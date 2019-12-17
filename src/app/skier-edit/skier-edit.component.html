@@ -1,1 +1,47 @@
-<p>skier-edit works!</p>
+<div class="row">
+    <div class="col-sm-4">
+        <img class="imgcenter" [src]="skier?.imageUrl"/>
+    </div>
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-md-12">
+                <label>First Name</label>
+                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.firstName" >
+            </div>
+
+            <div class="col-md-12">
+                <labeld>Last Name</labeld>
+                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.lastName">
+            </div>  
+
+            <div class="col-md-12">
+                <label>Sex</label>
+                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.sex">
+            </div>  
+
+            <div class="col-md-12">
+                <label>Country</label>
+                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.country">
+            </div>  
+
+            <div class="col-md-12">
+                <label>Birth Date</label>
+                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.birthDate">
+            </div>  
+
+            <div class="col-md-12">
+                <label>Image Url</label>
+                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.imageUrl">
+            </div>  
+        </div>
+    </div>
+</div>
+    
+<div>
+    <button type="button" 
+            class="btn btn-primary"
+            (click)="saveSkier()">Store</button>
+    <button type="button" 
+            class="btn btn-primary"
+            (click)="deleteSkier()">Delete</button>
+</div>

@@ -1,3 +1,9 @@
+
+<div class="wrapper">
+    <button type="button" 
+            class="btn btn-primary">Add new Skier</button>
+</div>
+
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -10,12 +16,12 @@
     </thead>
     <tbody>        
         <tr *ngFor="let skier of skiers">
-            <td class="text-center"><img style="width:30%;" [src]="skier.imageUrl"/></td>
+            <td class="text-center"><img [src]="skier.imageUrl"/></td>
             <td>{{skier.firstName}} {{skier.lastName}}</td>
             <td>{{skier.birthDate}}</td>
             <td>{{skier.country}}</td>
             <td><button type="button" 
-                        class="btn btn-secondary"
+                        class="btn btn-primary"
                         [routerLink]="skier.id">Edit</button></td>
         </tr>
     </tbody>

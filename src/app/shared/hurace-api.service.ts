@@ -21,4 +21,9 @@ export class HuraceApiService {
         return this.http.get<Skier[]>(`${environment.server}/skier`)
             .pipe(catchError(this.errorHandler));
     }
+
+    getSkierById(id): Observable<Skier> {
+        return this.http.get<Skier>(`${environment.server}/skier/${id}`)
+            .pipe(catchError(this.errorHandler));
+    }
 }

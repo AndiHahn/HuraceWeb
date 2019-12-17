@@ -1,0 +1,14 @@
+/*.imgcenter {
+    margin: auto;
+    width: 30%;
+  }
+*/
+
+.imgcenter {
+    display: table-cell;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}

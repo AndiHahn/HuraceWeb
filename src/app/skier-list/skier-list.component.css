@@ -1,0 +1,13 @@
+img {
+    width: 30%;
+}
+
+td {
+    vertical-align: middle;
+    font-size: larger;
+}
+
+.wrapper {
+    text-align: center;
+    margin: 20px;
+}
