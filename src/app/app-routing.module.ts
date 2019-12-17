@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { SkierListComponent } from './skier-list/skier-list.component';
+import { SkierEditComponent } from './skier-edit/skier-edit.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,14 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
+  {
+    path: 'skiers',
+    component: SkierListComponent
+  },
+  {
+    path: 'skiers/:id',
+    component: SkierEditComponent
+  }
 ];
 
 @NgModule({
