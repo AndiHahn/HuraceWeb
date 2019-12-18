@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SkierListComponent } from './skier-list/skier-list.component';
 import { SkierEditComponent } from './skier-edit/skier-edit.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,15 @@ const routes: Routes = [
   {
     path: 'newSkier',
     component: SkierEditComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'index.html',
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 ];
 

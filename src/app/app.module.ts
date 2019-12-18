@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SkierEditComponent } from './skier-edit/skier-edit.component';
 
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
