@@ -1,47 +1,90 @@
 <div class="row">
-    <div class="col-sm-4">
-        <img class="imgcenter" [src]="skier?.imageUrl"/>
+    <div class="col-sm-4 d-flex align-items-center justify-content-center">
+        <img [src]="skier?.imageUrl"/>
     </div>
     <div class="col-sm-8">
-        <div class="row">
-            <div class="col-md-12">
-                <label>First Name</label>
-                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.firstName" >
+        <form #skierForm="ngForm" (ngSubmit)="storeSkier()">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>First Name</label>
+                    <input type="text" class="form-control"
+                           name="firstName" 
+                           [(ngModel)]="skier.firstName" 
+                           required>
+                    <div *ngIf="errors.firstName" class="alert alert-danger myFault">
+                        {{ errors.firstName }}
+                    </div>      
+                </div>
+
+                <div class="col-md-12">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" 
+                           name="lastName"
+                           [(ngModel)]="skier.lastName" 
+                           required>
+                    <div *ngIf="errors.lastName" class="alert alert-danger myFault">
+                        {{ errors.lastName }}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label>Sex</label>
+                    <select class="custom-select" 
+                            name="sex" 
+                            [(ngModel)]="skier.sex" 
+                            required>
+                        <option *ngFor="let option of sexOptions">{{option}}</option>
+                    </select>
+                    <div *ngIf="errors.sex" class="alert alert-danger myFault">
+                        {{ errors.sex }}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label>Country</label>
+                    <select class="form-control selectpicker" 
+                            data-live-search="true"
+                            name="country"
+                            [(ngModel)]="skier.country" 
+                            required>
+                        <option *ngFor="let option of countryOptions">
+                            {{option.code}}
+                        </option>
+                    </select>
+                    <div *ngIf="errors.country" class="alert alert-danger myFault">
+                        {{ errors.country }}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <label>Birth Date</label>
+                    <input type="date" class="form-control" 
+                           name="birthDate"
+                           [ngModel]="skier.birthDate | date:'yyyy-MM-dd'" 
+                           (ngModelChange)="skier.birthDate = $event"
+                           useValueAsDate
+                           required>
+                    <div *ngIf="errors.birthDate" class="alert alert-danger myFault">
+                        {{ errors.birthDate }}
+                    </div>
+                </div>  
+
+                <div class="col-md-12">
+                    <label>Image Url</label>
+                    <input type="text" class="form-control" 
+                           name="imageUrl"
+                           [(ngModel)]="skier.imageUrl" >
+                </div>
+
+                <div class="col-md-12">
+                    <div class="wrapper">
+                        <button type="submit" 
+                                class="btn btn-primary"
+                                [disabled]="skierForm.invalid">Store</button>
+                    </div>
+                </div> 
             </div>
-
-            <div class="col-md-12">
-                <labeld>Last Name</labeld>
-                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.lastName">
-            </div>  
-
-            <div class="col-md-12">
-                <label>Sex</label>
-                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.sex">
-            </div>  
-
-            <div class="col-md-12">
-                <label>Country</label>
-                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.country">
-            </div>  
-
-            <div class="col-md-12">
-                <label>Birth Date</label>
-                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.birthDate">
-            </div>  
-
-            <div class="col-md-12">
-                <label>Image Url</label>
-                <input mdbInput type="text" class="form-control" [(ngModel)]="skier.imageUrl">
-            </div>  
-        </div>
+        </form>
     </div>
 </div>
     
-<div>
-    <button type="button" 
-            class="btn btn-primary"
-            (click)="saveSkier()">Store</button>
-    <button type="button" 
-            class="btn btn-primary"
-            (click)="deleteSkier()">Delete</button>
-</div>

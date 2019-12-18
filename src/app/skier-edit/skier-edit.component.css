@@ -1,14 +1,24 @@
-/*.imgcenter {
-    margin: auto;
-    width: 30%;
-  }
-*/
+img {
+  width: 35%;
+}
 
-.imgcenter {
-    display: table-cell;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
+label {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.wrapper {
+  text-align: center;
+  margin: 10px;
+}
+
+.wrapper button {
+  width: 300px;
+  margin: 20px;
+}
+
+.myFault {
+  margin-top: 5px;
+  margin-bottom: 0px;
 }

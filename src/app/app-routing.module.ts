@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'skiers/:id',
     component: SkierEditComponent
+  },
+  {
+    path: 'newSkier',
+    component: SkierEditComponent
   }
 ];
 
