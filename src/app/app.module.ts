@@ -11,6 +11,7 @@ import { SkierEditComponent } from './skier-edit/skier-edit.component';
 
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     LoginComponent,
     HomeComponent,
     SkierListComponent,
-    SkierEditComponent
+    SkierEditComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
