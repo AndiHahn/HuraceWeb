@@ -18,7 +18,6 @@ export class SkierEditComponent implements OnInit {
 
     skier: Skier = new Skier();
     sexOptions: any = ['male', 'female'];
-    //countryOptions: any = [];
     countryOptions: Country[];
 
     constructor(private router: Router,
@@ -28,8 +27,16 @@ export class SkierEditComponent implements OnInit {
     ngOnInit() {
         this.hs.getAllCountries().subscribe(res => this.countryOptions = res);
         this.skierForm.statusChanges.subscribe(() => this.updateErrorMessages());
-        this.route.params.subscribe(params => this.hs.getSkierById(params['id'])
-                         .subscribe(res => this.skier = res));
+
+        this.route.params.subscribe(params => {
+            if (params['id'] != 0) {
+                console.log("id != 0");
+                this.hs.getSkierById(params['id'])
+                    .subscribe(res => this.skier = res);
+            } else {
+                this.skier.id = 0;
+            }
+        });
     }
 
     storeSkier() {

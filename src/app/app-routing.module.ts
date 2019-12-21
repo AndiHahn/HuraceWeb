@@ -24,10 +24,6 @@ const routes: Routes = [
     component: SkierEditComponent
   },
   {
-    path: 'newSkier',
-    component: SkierEditComponent
-  },
-  {
     path: 'login',
     component: LoginComponent
   },
