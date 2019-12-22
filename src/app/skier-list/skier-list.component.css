@@ -16,19 +16,21 @@ td {
     text-align: center;
     margin: 20px;
 }
-/*
-input {
-    max-width: 200px;
-}
-*/
 
-.myStyle {
-    max-width: 350px;
-    align-content: center;
-    text-align: center;
-    margin: 20px;
+.centerContent {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.search-vertical-center {
+    margin: 24px;
+}
+
+.spinner-vertical {
+    margin-top: auto;
+    margin-bottom: auto;
+}
 
 /*
 SEARCH FIELD
