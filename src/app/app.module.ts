@@ -11,9 +11,26 @@ import { SkierEditComponent } from './skier-edit/skier-edit.component';
 
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { SearchComponent } from './search/search.component';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("Facebook-App-Id")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -22,7 +39,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     HomeComponent,
     SkierListComponent,
     SkierEditComponent,
-    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +47,15 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ReactiveFormsModule,
     HttpClientModule,
     OAuthModule.forRoot(),
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

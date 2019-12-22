@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.3",
     "angular-font-awesome": "^3.1.2",
     "angular-oauth2-oidc": "^8.0.4",
+    "angularx-social-login": "^2.2.1",
     "bootstrap": "^4.4.1",
     "bootstrap-select": "^1.13.12",
     "font-awesome": "^4.7.0",

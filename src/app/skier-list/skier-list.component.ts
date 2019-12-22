@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Skier } from '../shared/skier';
 import { HuraceApiService } from '../shared/hurace-api.service';
 import { distinctUntilChanged, debounceTime, tap, switchMap } from 'rxjs/operators';
+import { AuthenticationService } from '../shared/authentication.service';
 
 @Component({
   selector: 'huraceweb-skier-list',
@@ -15,7 +16,8 @@ export class SkierListComponent implements OnInit {
     isLoading = false;
     keyup = new EventEmitter<string>();
     
-    constructor(private hs: HuraceApiService) { }
+    constructor(private hs: HuraceApiService,
+                private authService: AuthenticationService) { }
     
     ngOnInit() {
         this.loadSkier();
@@ -37,5 +39,9 @@ export class SkierListComponent implements OnInit {
         this.hs.deleteSkier(id).subscribe(res => {
             this.loadSkier();
         });
+    }
+
+    private isLoggedIn() : boolean {
+        return this.authService.isLoggedIn();
     }
 }

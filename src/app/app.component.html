@@ -2,7 +2,7 @@
      style="margin-bottom: 15px;">
     <div class="container-fluid">
         <ul class="navbar-nav">
-            <a class="navbar-brand" href="#">HURACE</a>
+            <a class="navbar-brand" routerLink="home">HURACE</a>
             <li class="nav-item active">
                 <a routerLink="home"  routerLinkActive="active" class="nav-link">Home</a>
             </li>
@@ -19,9 +19,17 @@
 
         <ul class="navbar-nav navbar-right">
             <li class="nav-item active">
-                <a routerLink="login"  routerLinkActive="active" class="nav-link">
+                <a *ngIf="!isLoggedIn()" 
+                   (click)="logInUser()" routerLinkActive="active" class="nav-link">
                     <span class="fa fa-sign-in"></span>
                     Login
+                </a>
+                <a *ngIf="isLoggedIn()" [routerLink]="" 
+                   (click)="logOutUser()" routerLinkActive="active" class="nav-link">
+                   <span class="badge badge-primary"
+                         style="margin-right: 15px;">Andreas</span> 
+                   <span class="fa fa-sign-out"></span>
+                    Logout
                 </a>
             </li>
         </ul>
