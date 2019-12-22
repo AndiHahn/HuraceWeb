@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { SearchComponent } from './search/search.component';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

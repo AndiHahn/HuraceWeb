@@ -7,12 +7,52 @@ td {
     font-size: larger;
 }
 
+.buttonRow button{
+    width: 120px;
+    margin: 10px;
+}
+
 .wrapper {
     text-align: center;
     margin: 20px;
 }
+/*
+input {
+    max-width: 200px;
+}
+*/
 
-.buttonRow button{
-    width: 120px;
-    margin: 10px;
+.myStyle {
+    max-width: 350px;
+    align-content: center;
+    text-align: center;
+    margin: 20px;
+}
+
+
+/*
+SEARCH FIELD
+*/
+.form-control:focus {
+    box-shadow: none;
+}
+  
+.form-control-underlined {
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    padding-left: 0;
+}
+
+body {
+    background: #ffd89b;
+    background: -webkit-linear-gradient(to right, #ffd89b, #19547b);
+    background: linear-gradient(to right, #ffd89b, #19547b);
+    min-height: 100vh;
+}
+  
+.form-control::placeholder {
+    font-size: 0.95rem;
+    color: #aaa;
+    font-style: italic;
 }
