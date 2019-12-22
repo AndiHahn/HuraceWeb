@@ -1,50 +1,40 @@
 import { Component } from '@angular/core';
-import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
+//import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
-import { AuthenticationService } from './shared/authentication.service';
+//import { AuthenticationService } from './shared/authentication.service';
 import { Router } from '@angular/router';
+
+import { AuthService, SocialUser } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 @Component({
   selector: 'huraceweb-root',
   templateUrl: './app.component.html',
-  styles: []
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
     title = 'HuraceWeb';
 
-    login: any = {
-        username: '',
-        password: ''
-    };
+    user: SocialUser;
+    loggedIn: boolean;
 
-    private return: string = '';
-
-    constructor(private oauthService: OAuthService,
-                private authService: AuthenticationService,
+    constructor(private authService: AuthService,
                 private router: Router) {
-        this.configureWithNewConfigApi();
-    }
-    
-    private configureWithNewConfigApi() {
-        this.oauthService.configure(authConfig);
-        this.oauthService.tokenValidationHandler = new JwksValidationHandler();
-        this.oauthService.loadDiscoveryDocumentAndTryLogin();
-    }
-    
-    private isLoggedIn() : boolean {
-        return this.authService.isLoggedIn();
     }
 
-    private logOutUser() {
-        this.authService.logout();
+    ngOnInit() {
+        this.authService.authState.subscribe((user) => {
+            this.user = user;
+            this.loggedIn = (user != null);
+        });
     }
+    
+    signIn(): void {
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    } 
 
-    private logInUser() {
-        if (this.authService.login(this.login.username, this.login.password)) {
-            this.router.navigateByUrl(this.return);
-        } else {
-            // TODO error message
-        }
+    signOut(): void {
+        this.authService.signOut();
     }
 }

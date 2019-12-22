@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn()" class="wrapper">
+<div *ngIf="loggedIn" class="wrapper">
     <button type="button" 
             class="btn btn-primary"
             [routerLink]="0">Add new Skier</button>
@@ -11,7 +11,7 @@
             <th scope="col">Name</th>
             <th scope="col">Birth Date</th>
             <th scope="col">Country</th>
-            <th *ngIf="isLoggedIn()" scope="col">Action</th>
+            <th *ngIf="loggedIn" scope="col">Action</th>
         </tr>
     </thead>
 
@@ -50,7 +50,7 @@
             <td>{{skier.firstName}} {{skier.lastName}}</td>
             <td>{{skier.birthDate}}</td>
             <td>{{skier.country}}</td>
-            <td *ngIf="isLoggedIn()">
+            <td *ngIf="loggedIn">
                 <div>
                     <div class="buttonRow">
                         <button type="button" 
