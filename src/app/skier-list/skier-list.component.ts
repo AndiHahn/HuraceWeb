@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Skier } from '../shared/skier';
 import { HuraceApiService } from '../shared/hurace-api.service';
+import { distinctUntilChanged, debounceTime, tap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'huraceweb-skier-list',
@@ -9,21 +10,32 @@ import { HuraceApiService } from '../shared/hurace-api.service';
 })
 export class SkierListComponent implements OnInit {
 
-  skiers: Skier[];
-  
-  constructor(private hs: HuraceApiService) { }
-
-  ngOnInit() {
-    this.loadSkier();
-  }
-
-  loadSkier() {
-    this.hs.getAllSkier().subscribe(res => this.skiers = res);
-  }
-
-  deleteSkier(id: number) {
-    this.hs.deleteSkier(id).subscribe(res => {
-      this.loadSkier();
-    });
-  }
+    skiers: Skier[];
+    
+    isLoading = false;
+    keyup = new EventEmitter<string>();
+    
+    constructor(private hs: HuraceApiService) { }
+    
+    ngOnInit() {
+        this.loadSkier();
+    
+        this.keyup.pipe(
+            debounceTime(500),
+            distinctUntilChanged(),
+            tap(() => this.isLoading = true),
+            switchMap(searchTerm => this.hs.getAllSearch(searchTerm)),
+            tap(() => this.isLoading = false)
+        ).subscribe(skiers => this.skiers = skiers);
+    }
+    
+    loadSkier() {
+        this.hs.getAllSkier().subscribe(res => this.skiers = res);
+    }
+    
+    deleteSkier(id: number) {
+        this.hs.deleteSkier(id).subscribe(res => {
+            this.loadSkier();
+        });
+    }
 }

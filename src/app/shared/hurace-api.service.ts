@@ -53,4 +53,9 @@ export class HuraceApiService {
         return this.http.delete<Skier>(`${environment.server}/skier/${id}`)
             .pipe(catchError(this.errorHandler));
     }
+
+    getAllSearch(searchTerm: string): Observable<Skier[]> {
+        return this.http.get<Skier[]>(`${environment.server}/skiersearch/${searchTerm}`)
+            .pipe(retry(3), catchError(this.errorHandler));
+    }
 }
