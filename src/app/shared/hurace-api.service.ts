@@ -24,17 +24,17 @@ export class HuraceApiService {
             .pipe(catchError(this.errorHandler));
     }
 
-    getAllSkier(): Observable<Skier[]> {
-        return this.http.get<Skier[]>(`${environment.server}/skier`)
-            .pipe(catchError(this.errorHandler));
-    }
-
     getAllCountries(): Observable<Country[]> {
         return this.http.get<Country[]>(`${environment.server}/country`)
             .pipe(catchError(this.errorHandler));
     }
 
-    getSkierById(id): Observable<Skier> {
+    getAllSkier(): Observable<Skier[]> {
+        return this.http.get<Skier[]>(`${environment.server}/skier`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getSkierById(id: number): Observable<Skier> {
         return this.http.get<Skier>(`${environment.server}/skier/${id}`)
             .pipe(catchError(this.errorHandler));
     }
@@ -46,6 +46,11 @@ export class HuraceApiService {
 
     addSkier(skier: Skier): Observable<any> {
         return this.http.post<any>(`${environment.server}/skier`, skier)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    deleteSkier(id: number): Observable<any> {
+        return this.http.delete<Skier>(`${environment.server}/skier/${id}`)
             .pipe(catchError(this.errorHandler));
     }
 }

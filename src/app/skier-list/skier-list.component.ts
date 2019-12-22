@@ -14,7 +14,16 @@ export class SkierListComponent implements OnInit {
   constructor(private hs: HuraceApiService) { }
 
   ngOnInit() {
+    this.loadSkier();
+  }
+
+  loadSkier() {
     this.hs.getAllSkier().subscribe(res => this.skiers = res);
   }
 
+  deleteSkier(id: number) {
+    this.hs.deleteSkier(id).subscribe(res => {
+      this.loadSkier();
+    });
+  }
 }

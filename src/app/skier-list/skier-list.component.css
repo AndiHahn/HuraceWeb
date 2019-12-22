@@ -11,3 +11,8 @@ td {
     text-align: center;
     margin: 20px;
 }
+
+.buttonRow button{
+    width: 120px;
+    margin: 10px;
+}

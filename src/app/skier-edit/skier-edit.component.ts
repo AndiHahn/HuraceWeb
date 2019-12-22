@@ -30,7 +30,6 @@ export class SkierEditComponent implements OnInit {
 
         this.route.params.subscribe(params => {
             if (params['id'] != 0) {
-                console.log("id != 0");
                 this.hs.getSkierById(params['id'])
                     .subscribe(res => this.skier = res);
             } else {
