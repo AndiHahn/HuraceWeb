@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-//import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
-//import { AuthenticationService } from './shared/authentication.service';
 import { Router } from '@angular/router';
 
 import { AuthService, SocialUser } from "angularx-social-login";

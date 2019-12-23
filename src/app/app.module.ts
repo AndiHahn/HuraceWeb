@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SkierListComponent } from './skier-list/skier-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +15,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { StatisticComponent } from './statistic/statistic.component';
 
 let config = new AuthServiceConfig([
   {
@@ -35,10 +35,10 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
     SkierListComponent,
     SkierEditComponent,
+    StatisticComponent,
   ],
   imports: [
     BrowserModule,

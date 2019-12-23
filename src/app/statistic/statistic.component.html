@@ -1,0 +1,75 @@
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a *ngIf="allVisible" class="nav-link active" (click)="showAll()">All</a>
+        <a *ngIf="!allVisible" class="nav-link" (click)="showAll()">All</a>
+    </li>
+    <li class="nav-item">
+        <a *ngIf="slalomVisible" class="nav-link active" (click)="showSlalom()">Slalom</a>
+        <a *ngIf="!slalomVisible" class="nav-link" (click)="showSlalom()">Slalom</a>
+    </li>
+    <li class="nav-item">
+        <a *ngIf="giantSlalomVisible" class="nav-link active" (click)="showGiantSlalom()">Giant Slalom</a>
+        <a *ngIf="!giantSlalomVisible" class="nav-link" (click)="showGiantSlalom()">Giant Slalom</a>
+    </li>
+</ul>
+
+<!-- 
+    ##### ALL #####
+-->
+<div *ngIf="allVisible" id="accordion">
+    <div class="card"
+         *ngFor="let raceLocation of raceLocations">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#ref-{{raceLocation.id}}" aria-expanded="false">
+            {{raceLocation.location}}
+            </a>
+        </div>
+        <div id="ref-{{raceLocation.id}}" class="collapse" data-parent="#accordion"
+             *ngFor="let race of raceLocation.races">
+            <div class="card-body">
+                <div class="container-fluid">
+                    {{race.label}}
+                    <a class="float-right"
+                        routerLink="result">Results Run 1</a>
+                    <a class="float-right"
+                        routerLink="result">Results Run 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+    ##### SLALOM #####
+-->
+<table *ngIf="slalomVisible" class="table">
+    <tbody>     
+        <tr *ngFor="let race of slalom">
+            <td>{{race.label}}</td>
+            <td>{{race.location}}</td>
+            <td>{{race.gender}}</td>
+            <td>
+                <a class="float-right"
+                    routerLink="result">Result</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 
+    ##### GIANT SLALOM #####
+-->
+<table *ngIf="giantSlalomVisible" class="table">
+    <tbody>     
+        <tr *ngFor="let race of giantSlalom">
+            <td>{{race.label}}</td>
+            <td>{{race.location}}</td>
+            <td>{{race.gender}}</td>
+            <td>
+                <a class="float-right"
+                    routerLink="result">Result</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

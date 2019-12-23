@@ -2,9 +2,8 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Skier } from '../shared/skier';
 import { HuraceApiService } from '../shared/hurace-api.service';
 import { distinctUntilChanged, debounceTime, tap, switchMap } from 'rxjs/operators';
-//import { AuthenticationService } from '../shared/authentication.service';
 
-import { AuthService, SocialUser } from "angularx-social-login";
+import { AuthService } from "angularx-social-login";
 
 @Component({
   selector: 'huraceweb-skier-list',

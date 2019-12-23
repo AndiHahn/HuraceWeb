@@ -4,6 +4,28 @@
             [routerLink]="0">Add new Skier</button>
 </div>
 
+<div class="centerContent">
+    <div class="search-vertical-center p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+        <div class="input-group">
+            <input type="search" #searchTerm
+                (keyup)="keyup.emit(searchTerm.value)"
+                placeholder="Search..." 
+                aria-describedby="button-addon1" 
+                class="form-control border-0 bg-light">
+            <div class="input-group-append">
+                <div *ngIf="isLoading" class="spinner-vertical">
+                    <div class="spinner-border text-primary spinner-border-sm" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group-append">
+                <button id="button-addon1" type="submit" class="btn btn-link text-primary" disabled><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>    
+</div>
+
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -16,35 +38,6 @@
     </thead>
 
     <tbody>     
-        <tr>
-            <td colspan="5">
-                <div class="centerContent">
-                    <div class="search-vertical-center p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                        <div class="input-group">
-                            <input type="search" #searchTerm
-                                (keyup)="keyup.emit(searchTerm.value)"
-                                placeholder="Search..." 
-                                aria-describedby="button-addon1" 
-                                class="form-control border-0 bg-light">
-                            <div class="input-group-append">
-                                <div *ngIf="isLoading" class="spinner-vertical">
-                                    <div class="spinner-border text-primary spinner-border-sm" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-group-append">
-                                <button id="button-addon1" type="submit" class="btn btn-link text-primary" disabled><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        
-                    </div>    
-
-                    
-                </div>
-            </td>
-        </tr>
-        
         <tr *ngFor="let skier of skiers">
             <td class="text-center"><img [src]="skier.imageUrl"/></td>
             <td>{{skier.firstName}} {{skier.lastName}}</td>

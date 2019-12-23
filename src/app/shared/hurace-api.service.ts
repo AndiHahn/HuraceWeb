@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Skier } from './skier';
 import { environment } from 'src/environments/environment';
 
@@ -58,4 +58,6 @@ export class HuraceApiService {
         return this.http.get<Skier[]>(`${environment.server}/skiersearch/${searchTerm}`)
             .pipe(retry(3), catchError(this.errorHandler));
     }
+
+    
 }
