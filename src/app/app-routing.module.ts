@@ -13,29 +13,34 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'skiers',
-    component: SkierListComponent
-  },
-  {
-    path: 'skiers/:id',
-    component: SkierEditComponent
-  },
-  {
     path: 'index.html',
     redirectTo: 'home',
     pathMatch: 'full'
   },
   {
+    path: 'home',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'skiers',
+    component: SkierListComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'skiers/:id',
+    component: SkierEditComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'statistics',
-    component: StatisticComponent
+    component: StatisticComponent,
+    pathMatch: 'full'
   },
   {
     path: 'statistics/result/:raceid',
-    component: ResultComponent
+    component: ResultComponent,
+    pathMatch: 'full'
   }
 ];
 

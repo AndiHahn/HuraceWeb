@@ -1,7 +1,17 @@
+
+<div class="wrapper">
+    <h1 *ngIf="noResultsAvailable">No Results available!</h1>
+    <h1 *ngIf="!noResultsAvailable">Final result</h1>
+</div>
+
 <table class="table">
     <tbody>     
         <tr *ngFor="let result of resultsRun2">
-            <td>{{result.ordinal}}</td>
+            <td>
+                <div *ngIf="result.ordinal > 0">
+                    {{result.ordinal}}
+                </div>
+            </td>
             <td><img [src]="result.countryImgUrl"/></td>
             <td>{{result.name}}</td>
             <td>{{result.time}}</td>

@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ResultComponent implements OnInit {
 
+    noResultsAvailable = false;
     resultsRun1: Result[] = [];
     resultsRun2: Result[] = [];
     
@@ -22,6 +23,10 @@ export class ResultComponent implements OnInit {
                 this.hs.getResults(params['raceid'], 1)
                 .subscribe(res =>
                     {
+                        if (res.length == 0) {
+                            this.noResultsAvailable = true;
+                        }
+
                         res.map((result) => 
                         {
                             let timeString = "";
