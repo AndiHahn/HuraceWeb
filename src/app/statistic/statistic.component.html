@@ -37,9 +37,12 @@
              *ngFor="let race of raceLocation.races">
             <div class="card-body">
                 <div class="container-fluid">
-                    {{race.label}} ({{race.raceType}})
-                    <a class="float-right"
-                        routerLink="result/{{race.id}}">Result</a>
+                    {{race.race.label}} ({{race.race.raceType}})
+                    <a *ngIf="race.resultAvailable" class="float-right"
+                        routerLink="result/{{race.race.id}}">Result</a>
+                    <div *ngIf="!race.resultAvailable" class="float-right">
+                        no result available
+                    </div>  
                 </div>
             </div>
         </div>
@@ -52,12 +55,15 @@
 <table *ngIf="slalomVisible" class="table">
     <tbody>     
         <tr *ngFor="let race of slalom">
-            <td>{{race.label}}</td>
-            <td>{{race.location}}</td>
-            <td>{{race.gender}}</td>
+            <td>{{race.race.label}}</td>
+            <td>{{race.race.location}}</td>
+            <td>{{race.race.gender}}</td>
             <td>
-                <a class="float-right"
-                    routerLink="result/{{race.id}}">Result</a>
+                <a *ngIf="race.resultAvailable" class="float-right"
+                    routerLink="result/{{race.race.id}}">Result</a>
+                <div *ngIf="!race.resultAvailable" class="float-right">
+                    no result available
+                </div>
             </td>
         </tr>
     </tbody>
@@ -69,12 +75,15 @@
 <table *ngIf="giantSlalomVisible" class="table">
     <tbody>     
         <tr *ngFor="let race of giantSlalom">
-            <td>{{race.label}}</td>
-            <td>{{race.location}}</td>
-            <td>{{race.gender}}</td>
+            <td>{{race.race.label}}</td>
+            <td>{{race.race.location}}</td>
+            <td>{{race.race.gender}}</td>
             <td>
-                <a class="float-right"
-                    routerLink="result/{{race.id}}">Result</a>
+                <a *ngIf="race.resultAvailable" class="float-right"
+                    routerLink="result/{{race.race.id}}">Result</a>
+                <div *ngIf="!race.resultAvailable" class="float-right">
+                    no result available
+                </div>    
             </td>
         </tr>
     </tbody>

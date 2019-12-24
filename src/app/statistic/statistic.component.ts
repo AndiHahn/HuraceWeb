@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Race } from '../shared/race';
+import { RaceApi } from '../shared/race-api';
 import { HuraceApiService } from '../shared/hurace-api.service';
 import { Racelocation } from '../shared/racelocation';
+import { Race } from '../shared/race';
 
 @Component({
   selector: 'app-statistic',
@@ -10,7 +11,7 @@ import { Racelocation } from '../shared/racelocation';
 })
 export class StatisticComponent implements OnInit {
     
-    races: Race[];
+    races: Race[] = [];
     
     raceLocations: Racelocation[] = [];
     slalom: Race[] = [];
@@ -25,27 +26,34 @@ export class StatisticComponent implements OnInit {
     ngOnInit() {
         this.hs.getAllRace().subscribe(res => 
         {
-            this.races = res;
+            res.map((r) => {
+                let newRace = new Race(r);
+                newRace.resultAvailable = false;
+                this.races.push(newRace);
+            });
+
             let val = {index: 0 }
             let id = 0;
-            this.races.forEach(element => {
+            this.races.forEach(item => {
                 //ALL
-                if (this.containsLocation(element.location, val)) {
-                    this.raceLocations[val.index].races.push(element);
+                if (this.containsLocation(item.race.location, val)) {
+                    this.raceLocations[val.index].races.push(item);
                 } else {
                     //push new Racelocation
-                    let rl = new Racelocation(id, element.location, []);
-                    rl.races.push(element);
+                    let rl = new Racelocation(id, item.race.location, []);
+                    rl.races.push(item);
                     this.raceLocations.push(rl);
                 }
                 //SLALOM or GIANT SLALOM
-                if (element.raceType == "Slalom") {
-                    this.slalom.push(element);
-                } else if (element.raceType == "Riesenslalom") {
-                    this.giantSlalom.push(element);
+                if (item.race.raceType == "Slalom") {
+                    this.slalom.push(item);
+                } else if (item.race.raceType == "Riesenslalom") {
+                    this.giantSlalom.push(item);
                 }
                 id++;
             });
+
+            this.updateResultAvailable();
         });
     }
 
@@ -61,6 +69,27 @@ export class StatisticComponent implements OnInit {
                 }
             });
         return foundElement;
+    }
+
+    updateResultAvailable() {
+        //ALL RACES
+        this.raceLocations.forEach(item => {
+            item.races.forEach(race => {
+                this.hs.getResults(race.race.id, 2)
+                .subscribe(res => race.resultAvailable = res.length > 0);
+            })
+        });
+
+        //SLALOM
+        this.slalom.forEach(item => {
+            this.hs.getResults(item.race.id, 2)
+                .subscribe(res => item.resultAvailable = res.length > 0);
+        });
+        //GIANT SLALOM
+        this.giantSlalom.forEach(item => {
+            this.hs.getResults(item.race.id, 2)
+                .subscribe(res => item.resultAvailable = res.length > 0);
+        });
     }
 
     showAll() {

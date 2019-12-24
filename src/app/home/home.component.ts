@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Race } from '../shared/race';
+import { RaceApi } from '../shared/race-api';
 import { HuraceApiService } from '../shared/hurace-api.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { HuraceApiService } from '../shared/hurace-api.service';
 })
 export class HomeComponent implements OnInit {
 
-  races: Race[];
+  races: RaceApi[];
   
   constructor(private hs: HuraceApiService) { }
 
