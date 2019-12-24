@@ -16,6 +16,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 import { StatisticComponent } from './statistic/statistic.component';
+import { ResultComponent } from './result/result.component';
+import { LiveComponent } from './live/live.component';
 
 let config = new AuthServiceConfig([
   {
@@ -39,6 +41,8 @@ export function provideConfig() {
     SkierListComponent,
     SkierEditComponent,
     StatisticComponent,
+    ResultComponent,
+    LiveComponent,
   ],
   imports: [
     BrowserModule,

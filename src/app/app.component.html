@@ -2,6 +2,8 @@
      style="margin-bottom: 15px;">
     <div class="container-fluid">
         <ul class="navbar-nav">
+            <img class="logo" src="assets/images/hurace_logo.ico"
+                 height="38" width="38" style="margin-right: 10px;"/>
             <a class="navbar-brand" routerLink="home">HURACE</a>
             <li class="nav-item active">
                 <a routerLink="home"  routerLinkActive="active" class="nav-link">Home</a>
@@ -20,6 +22,8 @@
         <ul class="navbar-nav navbar-right">
             <li class="nav-item active">
                 <div>
+                    <img *ngIf="loggedIn" src="assets/images/facebook_logo.png"
+                         height="38" width="38" style="margin-right: 10px;"/>
                     <span *ngIf="loggedIn" class="badge badge-primary">
                         {{user?.firstName}}</span> 
                     <img *ngIf="loggedIn" src="{{user?.photoUrl}}"

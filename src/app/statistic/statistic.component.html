@@ -1,16 +1,22 @@
 
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a *ngIf="allVisible" class="nav-link active" (click)="showAll()">All</a>
-        <a *ngIf="!allVisible" class="nav-link" (click)="showAll()">All</a>
+        <a *ngIf="allVisible" class="nav-link active" 
+            [routerLink]="" (click)="showAll()">All</a>
+        <a *ngIf="!allVisible" class="nav-link" 
+            [routerLink]="" (click)="showAll()">All</a>
     </li>
     <li class="nav-item">
-        <a *ngIf="slalomVisible" class="nav-link active" (click)="showSlalom()">Slalom</a>
-        <a *ngIf="!slalomVisible" class="nav-link" (click)="showSlalom()">Slalom</a>
+        <a *ngIf="slalomVisible" class="nav-link active" 
+            [routerLink]="" (click)="showSlalom()">Slalom</a>
+        <a *ngIf="!slalomVisible" class="nav-link" 
+            [routerLink]="" (click)="showSlalom()">Slalom</a>
     </li>
     <li class="nav-item">
-        <a *ngIf="giantSlalomVisible" class="nav-link active" (click)="showGiantSlalom()">Giant Slalom</a>
-        <a *ngIf="!giantSlalomVisible" class="nav-link" (click)="showGiantSlalom()">Giant Slalom</a>
+        <a *ngIf="giantSlalomVisible" class="nav-link active" 
+            [routerLink]="" (click)="showGiantSlalom()">Giant Slalom</a>
+        <a *ngIf="!giantSlalomVisible" class="nav-link" 
+            [routerLink]="" (click)="showGiantSlalom()">Giant Slalom</a>
     </li>
 </ul>
 
@@ -24,16 +30,16 @@
             <a class="card-link" data-toggle="collapse" href="#ref-{{raceLocation.id}}" aria-expanded="false">
             {{raceLocation.location}}
             </a>
+            <span class="badge badge-primary"
+                  style="margin-left: 10px;">{{raceLocation.races.length}}</span> 
         </div>
-        <div id="ref-{{raceLocation.id}}" class="collapse" data-parent="#accordion"
+        <div id="ref-{{raceLocation.id}}" class="collapse" 
              *ngFor="let race of raceLocation.races">
             <div class="card-body">
                 <div class="container-fluid">
-                    {{race.label}}
+                    {{race.label}} ({{race.raceType}})
                     <a class="float-right"
-                        routerLink="result">Results Run 1</a>
-                    <a class="float-right"
-                        routerLink="result">Results Run 2</a>
+                        routerLink="result/{{race.id}}">Result</a>
                 </div>
             </div>
         </div>
@@ -51,7 +57,7 @@
             <td>{{race.gender}}</td>
             <td>
                 <a class="float-right"
-                    routerLink="result">Result</a>
+                    routerLink="result/{{race.id}}">Result</a>
             </td>
         </tr>
     </tbody>
@@ -68,7 +74,7 @@
             <td>{{race.gender}}</td>
             <td>
                 <a class="float-right"
-                    routerLink="result">Result</a>
+                    routerLink="result/{{race.id}}">Result</a>
             </td>
         </tr>
     </tbody>

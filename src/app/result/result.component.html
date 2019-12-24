@@ -1,0 +1,10 @@
+<table class="table">
+    <tbody>     
+        <tr *ngFor="let result of resultsRun2">
+            <td>{{result.ordinal}}</td>
+            <td><img [src]="result.countryImgUrl"/></td>
+            <td>{{result.name}}</td>
+            <td>{{result.time}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -11,6 +11,7 @@ import { Racelocation } from '../shared/racelocation';
 export class StatisticComponent implements OnInit {
     
     races: Race[];
+    
     raceLocations: Racelocation[] = [];
     slalom: Race[] = [];
     giantSlalom: Race[] = [];

@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { SkierListComponent } from './skier-list/skier-list.component';
 import { SkierEditComponent } from './skier-edit/skier-edit.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
     path: 'statistics',
     component: StatisticComponent
   },
+  {
+    path: 'statistics/result/:raceid',
+    component: ResultComponent
+  }
 ];
 
 @NgModule({

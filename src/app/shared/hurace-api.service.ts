@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { map, catchError, retry } from 'rxjs/operators';
 import { Country } from './country';
 import { Race } from './race';
+import { ResultApi } from './result-api';
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,8 @@ export class HuraceApiService {
             .pipe(retry(3), catchError(this.errorHandler));
     }
 
-    
+    getResults(raceid: number, run: number): Observable<ResultApi[]> {
+        return this.http.get<ResultApi[]>(`${environment.server}/race/result/${raceid}/${run}`)
+            .pipe(catchError(this.errorHandler));
+    }
 }
