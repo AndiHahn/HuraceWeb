@@ -1,1 +1,77 @@
-<p>live works!</p>
+<button type="button" 
+        class="btn btn-primary"
+        (click)="refresh()">Refresh</button>
+
+<div class="wrapper">
+    <h3>{{race?.label}}</h3>
+</div>        
+
+<div class="myTables">
+    <table class="table">
+        <tbody>  
+            <tr>
+                <td><h5>AM START:</h5></td>
+                <td><img *ngIf="nextSkier != null" 
+                         [src]="nextSkier?.imageUrl"/></td>
+                <td>
+                    <h5>{{nextSkier?.firstName}} {{nextSkier?.lastName}}</h5>
+                </td>
+            </tr>
+
+            <tr>
+                <td><h5>AUF DER PISTE:</h5></td>
+                <td><img *ngIf="currentSkier != null" 
+                         [src]="currentSkier?.imageUrl"/></td>
+                <td>
+                    <h5>{{currentSkier?.firstName}} {{currentSkier?.lastName}}</h5>
+                </td>
+            </tr>
+
+            <tr>
+                <td><h5>IM ZIEL:</h5></td>
+                <td><img *ngIf="lastSkier != null" 
+                         [src]="lastSkier?.imageUrl"/></td>
+                <td>
+                    <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="myTables">
+    <table class="table">
+        <thead>
+            <h5>In Führung</h5>
+        </thead>
+        <tbody>     
+            <tr *ngFor="let result of results">
+                <td>
+                    <div *ngIf="result.ordinal > 0" class="text-center">
+                        {{result.ordinal}}
+                    </div>
+                </td>
+                <td class="text-center"><img [src]="result.countryImgUrl"/></td>
+                <td>{{result.name}}</td>
+                <td>{{result.time}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="myTables">
+    <table class="table">
+        <thead>
+            <h5>Further Startlist</h5>
+        </thead>
+        <tbody>     
+            <tr *ngFor="let startpos of furherStartlist">
+                    <td *ngIf="startpos.ordinal > 0">{{startpos.ordinal}}</td>
+                    <td *ngIf="startpos.ordinal > 0">
+                        {{startpos.skier.firstName}} {{startpos.skier.lastName}}
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

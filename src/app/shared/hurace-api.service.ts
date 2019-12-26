@@ -8,6 +8,7 @@ import { map, catchError, retry } from 'rxjs/operators';
 import { Country } from './country';
 import { RaceApi } from './race-api';
 import { ResultApi } from './result-api';
+import { StartlistEntry } from './startlist-entry';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,38 @@ export class HuraceApiService {
 
     getResults(raceid: number, run: number): Observable<ResultApi[]> {
         return this.http.get<ResultApi[]>(`${environment.server}/race/result/${raceid}/${run}`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    //LIVE
+
+    getLiveRace(): Observable<RaceApi> {
+        return this.http.get<RaceApi>(`${environment.server}/live/race`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getLiveResults(): Observable<ResultApi[]> {
+        return this.http.get<ResultApi[]>(`${environment.server}/live/result`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getLiveStartlist(): Observable<StartlistEntry[]> {
+        return this.http.get<StartlistEntry[]>(`${environment.server}/live/startlist`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getCurrentSkier(): Observable<Skier> {
+        return this.http.get<Skier>(`${environment.server}/live/currentSkier`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getNextSkier(): Observable<Skier> {
+        return this.http.get<Skier>(`${environment.server}/live/nextSkier`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getLastSkier(): Observable<Skier> {
+        return this.http.get<Skier>(`${environment.server}/live/lastSkier`)
             .pipe(catchError(this.errorHandler));
     }
 }

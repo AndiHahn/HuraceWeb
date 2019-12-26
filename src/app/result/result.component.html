@@ -5,18 +5,18 @@
 </div>
 
 <div class="myContent">
-<table class="table">
-    <tbody>     
-        <tr *ngFor="let result of resultsRun2">
-            <td>
-                <div *ngIf="result.ordinal > 0" class="text-center">
-                    {{result.ordinal}}
-                </div>
-            </td>
-            <td class="text-center"><img [src]="result.countryImgUrl"/></td>
-            <td>{{result.name}}</td>
-            <td>{{result.time}}</td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table">
+        <tbody>     
+            <tr *ngFor="let result of resultsRun2">
+                <td>
+                    <div *ngIf="result.ordinal > 0" class="text-center">
+                        {{result.ordinal}}
+                    </div>
+                </td>
+                <td class="text-center"><img [src]="result.countryImgUrl"/></td>
+                <td>{{result.name}}</td>
+                <td>{{result.time}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

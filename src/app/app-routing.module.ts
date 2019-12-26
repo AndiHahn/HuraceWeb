@@ -5,6 +5,7 @@ import { SkierListComponent } from './skier-list/skier-list.component';
 import { SkierEditComponent } from './skier-edit/skier-edit.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { ResultComponent } from './result/result.component';
+import { LiveComponent } from './live/live.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'statistics/result/:raceid',
     component: ResultComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'live',
+    component: LiveComponent,
     pathMatch: 'full'
   }
 ];
