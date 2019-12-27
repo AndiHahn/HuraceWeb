@@ -64,4 +64,14 @@ export class HuraceDataApiService {
         return this.http.get<ResultApi[]>(`${environment.server}/race/result/${raceid}/${run}`)
             .pipe(catchError(this.errorHandler));
     }
+
+    getStartlist(raceid: number): Observable<Skier[]> {
+        return this.http.get<Skier[]>(`${environment.server}/race/startlist/${raceid}`)
+            .pipe(catchError(this.errorHandler));
+    } 
+
+    getStartlistDelta(raceid: number): Observable<Skier[]> {
+        return this.http.get<Skier[]>(`${environment.server}/race/startlistdelta/${raceid}`)
+            .pipe(catchError(this.errorHandler));
+    } 
 }

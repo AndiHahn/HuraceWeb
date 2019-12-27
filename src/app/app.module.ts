@@ -18,6 +18,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-logi
 import { StatisticComponent } from './statistic/statistic.component';
 import { ResultComponent } from './result/result.component';
 import { LiveComponent } from './live/live.component';
+import { StartlistComponent } from './startlist/startlist.component';
 
 let config = new AuthServiceConfig([
   {
@@ -43,6 +44,7 @@ export function provideConfig() {
     StatisticComponent,
     ResultComponent,
     LiveComponent,
+    StartlistComponent,
   ],
   imports: [
     BrowserModule,

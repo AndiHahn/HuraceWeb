@@ -1,0 +1,36 @@
+<div *ngIf="loggedIn" >
+    <div class="wrapper">
+        <h1>Propose Skier for Startlist</h1>
+    </div>
+
+    <!--[(ngModel)]="selectedSkier" -->
+    <select class="selectpicker" 
+            id="test"
+            name="skier">
+        <option *ngFor="let startpos of startlistDelta">
+            {{startpos?.firstName}} {{startpos?.lastName}}
+        </option>
+    </select>
+
+    <button type="button" 
+            class="btn btn-primary"
+            (click)="proposeSkier()">Propose</button>
+</div>
+
+
+
+<div class="wrapper">
+    <h1>Startlist</h1>
+</div>
+
+<table class="table table-striped table-dark table-hover">
+    <tbody>
+        <tr *ngFor="let skier of startlist; let i = index">
+            <td><h1 class="marginLeft25">{{i + 1}}</h1></td>
+            <td class="text-center"><img [src]="skier.imageUrl"/></td>
+            <td>{{skier.firstName}} {{skier.lastName}}</td>
+            <td>{{skier.birthDate}}</td>
+            <td>{{skier.country}}</td>
+        </tr>
+    </tbody>
+</table>

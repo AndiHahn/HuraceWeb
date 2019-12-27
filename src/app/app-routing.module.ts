@@ -6,6 +6,7 @@ import { SkierEditComponent } from './skier-edit/skier-edit.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { ResultComponent } from './result/result.component';
 import { LiveComponent } from './live/live.component';
+import { StartlistComponent } from './startlist/startlist.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'home/:id',
+    component: StartlistComponent,
     pathMatch: 'full'
   },
   {
