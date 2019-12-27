@@ -1,21 +1,21 @@
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs  bg-dark text-white">
     <li class="nav-item">
         <a *ngIf="allVisible" class="nav-link active" 
             [routerLink]="" (click)="showAll()">All</a>
-        <a *ngIf="!allVisible" class="nav-link" 
+        <a *ngIf="!allVisible" class="nav-link text-white" 
             [routerLink]="" (click)="showAll()">All</a>
     </li>
     <li class="nav-item">
         <a *ngIf="slalomVisible" class="nav-link active" 
             [routerLink]="" (click)="showSlalom()">Slalom</a>
-        <a *ngIf="!slalomVisible" class="nav-link" 
+        <a *ngIf="!slalomVisible" class="nav-link text-white" 
             [routerLink]="" (click)="showSlalom()">Slalom</a>
     </li>
     <li class="nav-item">
         <a *ngIf="giantSlalomVisible" class="nav-link active" 
             [routerLink]="" (click)="showGiantSlalom()">Giant Slalom</a>
-        <a *ngIf="!giantSlalomVisible" class="nav-link" 
+        <a *ngIf="!giantSlalomVisible" class="nav-link text-white" 
             [routerLink]="" (click)="showGiantSlalom()">Giant Slalom</a>
     </li>
 </ul>
@@ -24,10 +24,10 @@
     ##### ALL #####
 -->
 <div *ngIf="allVisible" id="accordion">
-    <div class="card"
+    <div class="card bg-dark text-white"
          *ngFor="let raceLocation of raceLocations">
         <div class="card-header">
-            <a class="card-link" data-toggle="collapse" href="#ref-{{raceLocation.id}}" aria-expanded="false">
+            <a class="card-link text-white" data-toggle="collapse" href="#ref-{{raceLocation.id}}" aria-expanded="false">
             {{raceLocation.location}}
             </a>
             <span class="badge badge-primary"
@@ -52,7 +52,7 @@
 <!-- 
     ##### SLALOM #####
 -->
-<table *ngIf="slalomVisible" class="table">
+<table *ngIf="slalomVisible" class="table table-striped table-dark table-hover">
     <tbody>     
         <tr *ngFor="let race of slalom">
             <td>{{race.race.label}}</td>
@@ -72,7 +72,7 @@
 <!-- 
     ##### GIANT SLALOM #####
 -->
-<table *ngIf="giantSlalomVisible" class="table">
+<table *ngIf="giantSlalomVisible" class="table table-striped table-dark table-hover">
     <tbody>     
         <tr *ngFor="let race of giantSlalom">
             <td>{{race.race.label}}</td>
