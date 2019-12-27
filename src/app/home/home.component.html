@@ -3,17 +3,54 @@
 </div>
 
 <div class="d-flex flex-wrap align-content-stretch">
-    <div class="card text-white bg-primary mb-3" 
-         *ngFor="let race of races">
-        <div class="card-header">
-            <h5>{{race?.label}}</h5>
-            <p>{{race?.date}}</p>
+    <!--
+    <div *ngIf="raceIsLive">
+        <div class="card text-white bg-primary mb-3" 
+            *ngFor="let race of races">
+            <div class="card-header">
+                <h5>{{race?.label}}</h5>
+                <p>{{race?.date}}</p>
+            </div>
+            <div class="card-body">
+                <p class="card-title">Gender: {{race?.gender}}</p>
+                <p class="card-title">Status: {{race?.status}}</p>
+                <p class="card-text">Location: {{race?.location}}</p>
+                <p class="card-text">Discipline: {{race?.raceType}}</p>
+            </div>
         </div>
-        <div class="card-body">
-            <p class="card-title">Gender: {{race?.gender}}</p>
-            <p class="card-title">Status: {{race?.status}}</p>
-            <p class="card-text">Location: {{race?.location}}</p>
-            <p class="card-text">Discipline: {{race?.raceType}}</p>
+    </div>
+    -->
+
+    <div *ngFor="let race of races">
+        <div *ngIf="!raceIsLive || (raceIsLive && liveRace?.id != race.id)" 
+             class="card text-white bg-primary mb-3">
+            <div class="card-header">
+                <h5>{{race?.label}}</h5>
+                <p>{{race?.date}}</p>
+            </div>
+            <div class="card-body">
+                <p class="card-title">Gender: {{race?.gender}}</p>
+                <p class="card-title">Status: {{race?.status}}</p>
+                <p class="card-text">Location: {{race?.location}}</p>
+                <p class="card-text">Discipline: {{race?.raceType}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="raceIsLive && liveRace?.id == race.id" 
+             class="card text-white bg-information mb-3">
+            <div class="card-header text-body">
+                <h5>{{race?.label}}</h5>
+                <a routerLink="../live" routerLinkActive="active">
+                    Live
+                    <div class="spinner-grow spinner-grow-sm text-danger"></div>
+                </a>
+            </div>
+            <div class="card-body text-body">
+                <p class="card-title">Gender: {{race?.gender}}</p>
+                <p class="card-title">Status: {{race?.status}}</p>
+                <p class="card-text">Location: {{race?.location}}</p>
+                <p class="card-text">Discipline: {{race?.raceType}}</p>
+            </div>
         </div>
     </div>
 </div>

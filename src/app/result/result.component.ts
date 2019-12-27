@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HuraceApiService } from '../shared/hurace-api.service';
+import { HuraceDataApiService } from '../shared/hurace-data-api.service';
 import { Result } from '../shared/result';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class ResultComponent implements OnInit {
     resultsRun1: Result[] = [];
     resultsRun2: Result[] = [];
     
-    constructor(private hs: HuraceApiService,
+    constructor(private hs: HuraceDataApiService,
                 private route: ActivatedRoute) { }
     
     ngOnInit() {

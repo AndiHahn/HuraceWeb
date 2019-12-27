@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AuthService, SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { HuraceLiveApiService } from './shared/hurace-live-api.service';
 
 @Component({
   selector: 'huraceweb-root',
@@ -17,8 +18,10 @@ export class AppComponent {
     user: SocialUser;
     loggedIn: boolean;
 
+    raceIsLive: boolean;
+
     constructor(private authService: AuthService,
-                private router: Router) {
+                private hls: HuraceLiveApiService) {
     }
 
     ngOnInit() {
@@ -26,6 +29,7 @@ export class AppComponent {
             this.user = user;
             this.loggedIn = (user != null);
         });
+        this.hls.isLive.subscribe(res => this.raceIsLive = res);
     }
     
     signIn(): void {

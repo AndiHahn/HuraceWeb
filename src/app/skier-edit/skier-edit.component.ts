@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HuraceApiService } from '../shared/hurace-api.service';
+import { HuraceDataApiService } from '../shared/hurace-data-api.service';
 import { Skier } from '../shared/skier';
 import { NgForm } from '@angular/forms';
 import { SkierEditErrorMessages } from './skier-edit-error-messages';
@@ -22,7 +22,7 @@ export class SkierEditComponent implements OnInit {
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
-                private hs: HuraceApiService) { }
+                private hs: HuraceDataApiService) { }
 
     ngOnInit() {
         this.hs.getAllCountries().subscribe(res => this.countryOptions = res);

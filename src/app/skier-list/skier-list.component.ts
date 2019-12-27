@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Skier } from '../shared/skier';
-import { HuraceApiService } from '../shared/hurace-api.service';
+import { HuraceDataApiService } from '../shared/hurace-data-api.service';
 import { distinctUntilChanged, debounceTime, tap, switchMap } from 'rxjs/operators';
 
 import { AuthService } from "angularx-social-login";
@@ -19,7 +19,7 @@ export class SkierListComponent implements OnInit {
     
     loggedIn: boolean;
 
-    constructor(private hs: HuraceApiService,
+    constructor(private hs: HuraceDataApiService,
                 private authService: AuthService,) { }
     
     ngOnInit() {

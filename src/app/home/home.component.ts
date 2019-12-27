@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RaceApi } from '../shared/race-api';
-import { HuraceApiService } from '../shared/hurace-api.service';
+import { HuraceDataApiService } from '../shared/hurace-data-api.service';
+import { HuraceLiveApiService } from '../shared/hurace-live-api.service';
 
 @Component({
   selector: 'huraceweb-home',
@@ -9,12 +10,23 @@ import { HuraceApiService } from '../shared/hurace-api.service';
 })
 export class HomeComponent implements OnInit {
 
-  races: RaceApi[];
+    races: RaceApi[];
+    raceIsLive: boolean;
+    liveRace: RaceApi;
   
-  constructor(private hs: HuraceApiService) { }
+    constructor(private hs: HuraceDataApiService,
+                private hls: HuraceLiveApiService) { }
+    
+    ngOnInit() {
+        this.hs.getAllRace().subscribe(res => this.races = res);
+        this.hls.isLive.subscribe(res => {
+          this.raceIsLive = res;
 
-  ngOnInit() {
-    this.hs.getAllRace().subscribe(res => this.races = res);
-  }
-
+          if (this.raceIsLive) {
+            this.hls.getLiveRace().subscribe(res => this.liveRace = res);
+          } else {
+            this.liveRace = null;
+          }
+        });
+    }
 }

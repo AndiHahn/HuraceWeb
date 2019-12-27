@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RaceApi } from '../shared/race-api';
-import { HuraceApiService } from '../shared/hurace-api.service';
+import { HuraceDataApiService } from '../shared/hurace-data-api.service';
 import { Racelocation } from '../shared/racelocation';
 import { Race } from '../shared/race';
 
@@ -21,7 +21,7 @@ export class StatisticComponent implements OnInit {
     slalomVisible: boolean = false;
     giantSlalomVisible: boolean = false;
     
-    constructor(private hs: HuraceApiService) { }
+    constructor(private hs: HuraceDataApiService) { }
     
     ngOnInit() {
         this.hs.getAllRace().subscribe(res => 
