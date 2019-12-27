@@ -7,6 +7,7 @@ import { ResultApi } from './result-api';
 import { catchError } from 'rxjs/operators';
 import { StartlistEntry } from './startlist-entry';
 import { Skier } from './skier';
+import { Intermediate } from './intermediate';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +71,28 @@ export class HuraceLiveApiService {
 
     getLastSkier(): Observable<Skier> {
         return this.http.get<Skier>(`${environment.server}/live/lastSkier`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    /*
+    getIntermediatesCurrent(): Observable<Intermediate[]> {
+        return this.http.get<Intermediate[]>(`${environment.server}/live/currentTimes`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getIntermediatesLeader(): Observable<Intermediate[]> {
+        return this.http.get<Intermediate[]>(`${environment.server}/live/leaderTimes`)
+            .pipe(catchError(this.errorHandler));
+    }
+    */
+
+    getCurrentIntermediate(): Observable<Intermediate> {
+        return this.http.get<Intermediate>(`${environment.server}/live/currentIntermediate`)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    getLastResult(): Observable<ResultApi> {
+        return this.http.get<ResultApi>(`${environment.server}/live/lastResult`)
             .pipe(catchError(this.errorHandler));
     }
 }

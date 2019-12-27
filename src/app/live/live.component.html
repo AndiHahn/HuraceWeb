@@ -5,10 +5,10 @@
 
 <div *ngIf="isLive">
     <div class="myTables">
-        <table class="table">
+        <table class="table table-striped table-dark">
             <tbody>  
                 <tr>
-                    <td><h5>AM START:</h5></td>
+                    <td><h5>NEXT STARTER:</h5></td>
                     <td><img *ngIf="nextSkier != null" 
                             [src]="nextSkier?.imageUrl"/></td>
                     <td>
@@ -17,20 +17,44 @@
                 </tr>
 
                 <tr>
-                    <td><h5>AUF DER PISTE:</h5></td>
+                    <td><h5>CURRENT SKIER:</h5></td>
                     <td><img *ngIf="currentSkier != null" 
                             [src]="currentSkier?.imageUrl"/></td>
                     <td>
                         <h5>{{currentSkier?.firstName}} {{currentSkier?.lastName}}</h5>
+                        <div *ngIf="currentIntermediate?.id > 1">
+                            <h6 *ngIf="!timespanIsMinus(currentIntermediate?.time)"
+                                class="text-danger">
+                                + {{currentIntermediate?.time}}
+                            </h6>
+                            <h6 *ngIf="timespanIsMinus(currentIntermediate?.time)"
+                                class="text-success">
+                                {{currentIntermediate?.time}}
+                            </h6>
+                        </div>
+                        
                     </td>
                 </tr>
 
                 <tr>
-                    <td><h5>IM ZIEL:</h5></td>
+                    <td><h5>FINISHED:</h5></td>
                     <td><img *ngIf="lastSkier != null" 
                             [src]="lastSkier?.imageUrl"/></td>
                     <td>
-                        <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
+                        <div *ngIf="resultLastSkier != null && resultLastSkier.ordinal > 0">
+                            <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
+                            <h6>Rank: {{resultLastSkier?.ordinal}}</h6>
+                            <h6>Time: {{resultLastSkier?.time}}</h6>
+                        
+                            <h6 *ngIf="resultLastSkier?.ordinal == 1"
+                                class="text-success">
+                                {{resultLastSkier?.residue}}
+                            </h6>
+                            <h6 *ngIf="resultLastSkier?.ordinal != 1"
+                                class="text-danger">
+                                + {{resultLastSkier?.residue}}
+                            </h6>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -38,9 +62,9 @@
     </div>
 
     <div class="myTables">
-        <table class="table">
+        <table class="table table-striped table-dark table-hover">
             <thead>
-                <h5>In Führung</h5>
+                <h5 class="textMargin">Ranking</h5>
             </thead>
             <tbody>     
                 <tr *ngFor="let result of results">
@@ -58,9 +82,9 @@
     </div>
 
     <div class="myTables">
-        <table class="table">
+        <table *ngIf="furherStartlist.length > 0" class="table table-striped table-dark table-hover">
             <thead>
-                <h5>Further Startlist</h5>
+                <h5 class="textMargin">Further Startlist</h5>
             </thead>
             <tbody>     
                 <tr *ngFor="let startpos of furherStartlist">

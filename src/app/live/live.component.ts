@@ -5,6 +5,8 @@ import { StartlistEntry } from '../shared/startlist-entry';
 import { Result } from '../shared/result';
 import { Subscription, interval } from 'rxjs';
 import { HuraceLiveApiService } from '../shared/hurace-live-api.service';
+import { Intermediate } from '../shared/intermediate';
+import { ResultApi } from '../shared/result-api';
 
 @Component({
   selector: 'app-live',
@@ -25,6 +27,9 @@ export class LiveComponent implements OnInit {
     
     race: RaceApi;
 
+    currentIntermediate: Intermediate;
+    resultLastSkier: ResultApi;
+
     cyclicSubscription: Subscription;
     
     constructor(private hs: HuraceLiveApiService) { }
@@ -41,15 +46,7 @@ export class LiveComponent implements OnInit {
         if (this.cyclicSubscription != null) {
             this.cyclicSubscription.unsubscribe();
         }
-    }
-
-    loadRace() {
-        //get live race - check if 
-        this.hs.getLiveRace().subscribe(res => this.race = res);
-        this.hs.getLiveStartlist().subscribe(res => {
-            this.fullStartlist = res;
-            this.furherStartlist = this.fullStartlist;
-        });
+        this.cyclicSubscription = null;
     }
 
     startCyclicSubscription() {
@@ -63,6 +60,11 @@ export class LiveComponent implements OnInit {
                 this.cyclicSubscription.unsubscribe();
             }
         }
+    }
+
+    loadRace() {
+        //get live race - check if 
+        this.hs.getLiveRace().subscribe(res => this.race = res);
     }
 
     refresh() {
@@ -92,15 +94,25 @@ export class LiveComponent implements OnInit {
                 })
             });
         
-        //update further Startlist
-        if (this.currentSkier != null) {
-            let actStartpos = this.getStartpositionBySkier(this.currentSkier.id);
-            this.furherStartlist.forEach(item => {
-                if (item.ordinal <= actStartpos) {
-                    item.ordinal = 0;
-                }
-            });
-        }
+        //load Startlist
+        this.hs.getLiveStartlist().subscribe(res => {
+            this.fullStartlist = res;
+            this.furherStartlist = this.fullStartlist;
+
+            //update further Startlist
+            if (this.currentSkier != null) {
+                let actStartpos = this.getStartpositionBySkier(this.currentSkier.id);
+                this.furherStartlist.forEach(item => {
+                    if (item.ordinal <= actStartpos) {
+                        item.ordinal = 0;
+                    }
+                });
+            }
+        });
+
+        //get intermediate time
+        this.hs.getCurrentIntermediate().subscribe(res => this.currentIntermediate = res);
+        this.hs.getLastResult().subscribe(res => this.resultLastSkier = res);
     }
     
     getStartpositionBySkier(id: number): number {
@@ -113,5 +125,9 @@ export class LiveComponent implements OnInit {
             }
         })
         return index;
+    }
+
+    timespanIsMinus(time: string): boolean {
+        return time.charAt(0) == "-";
     }
 }

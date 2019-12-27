@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { authConfig } from './auth.config';
-import { Router } from '@angular/router';
 
 import { AuthService, SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
