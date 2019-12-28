@@ -25,11 +25,11 @@
                         <div *ngIf="currentIntermediate?.id > 1">
                             <h6 *ngIf="!timespanIsMinus(currentIntermediate?.time)"
                                 class="text-danger">
-                                + {{currentIntermediate?.time}}
+                                {{currentIntermediate?.id}}: + {{currentIntermediate?.time}}
                             </h6>
                             <h6 *ngIf="timespanIsMinus(currentIntermediate?.time)"
                                 class="text-success">
-                                {{currentIntermediate?.time}}
+                                {{currentIntermediate?.id}}: {{currentIntermediate?.time}}
                             </h6>
                         </div>
                         
