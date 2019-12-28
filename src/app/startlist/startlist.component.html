@@ -17,7 +17,6 @@
                 class="btn btn-primary marginLeft10"
                 (click)="proposeSkier()">Propose</button>
     </div>
-    
 </div>
 
 <div class="wrapper">
@@ -35,3 +34,7 @@
         </tr>
     </tbody>
 </table>
+
+<div *ngIf="startlist.length == 0">
+    <h5 class="wrapper">No Startlist available...</h5>
+</div>

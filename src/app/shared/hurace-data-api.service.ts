@@ -25,6 +25,11 @@ export class HuraceDataApiService {
             .pipe(catchError(this.errorHandler));
     }
 
+    getAllRaceBySeason(season: string): Observable<RaceApi[]> {
+        return this.http.get<RaceApi[]>(`${environment.server}/race/${season}`)
+            .pipe(catchError(this.errorHandler));
+    }
+
     getAllCountries(): Observable<Country[]> {
         return this.http.get<Country[]>(`${environment.server}/country`)
             .pipe(catchError(this.errorHandler));

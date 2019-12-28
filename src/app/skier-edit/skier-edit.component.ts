@@ -30,11 +30,7 @@ export class SkierEditComponent implements OnInit {
         this.hs.getAllCountries().subscribe(res => {
             this.countryOptions = res;
             //refresh selectpicker
-            setTimeout(() => {
-                console.log("refresh selectpicker countries loaded!");
-                console.log("skier.country: " + this.skier.country);
-                $('.selectpicker').selectpicker('refresh');
-            }, 500);
+            this.refreshSelectPicker(200);
         } );
         this.skierForm.statusChanges.subscribe(() => this.updateErrorMessages());
 
@@ -43,9 +39,6 @@ export class SkierEditComponent implements OnInit {
                 this.hs.getSkierById(params['id'])
                     .subscribe(res => {
                         this.skier = res;
-                        //refresh selectpicker
-                        //console.log("refresh selectpicker skier laoded");
-                        //$('.selectpicker').selectpicker('refresh');
                     } );
             } else {
                 this.skier.id = 0;
@@ -53,12 +46,11 @@ export class SkierEditComponent implements OnInit {
         });
     }
 
-    ngAfterViewInit() {
+    refreshSelectPicker(delay: number) {
         setTimeout(() => {
-            console.log("refresh selectpicker ngAfterViewInit!");
-            console.log("skier.country: " + this.skier.country);
+            $('.selectpicker').val(this.skier.country);
             $('.selectpicker').selectpicker('refresh');
-        }, 1000);
+        }, delay);
     }
 
     storeSkier() {
@@ -67,11 +59,13 @@ export class SkierEditComponent implements OnInit {
             this.hs.updateSkier(this.skier).subscribe(res => {
                 this.skier = new Skier();
                 this.skierForm.reset(this.skier);
+                this.router.navigateByUrl('/skiers');
             });
         } else {
             this.hs.addSkier(this.skier).subscribe(res => {
                 this.skier = new Skier();
                 this.skierForm.reset(this.skier);
+                this.router.navigateByUrl('/skiers');
             })
         }
     }

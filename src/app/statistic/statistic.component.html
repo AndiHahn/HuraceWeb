@@ -1,4 +1,14 @@
 
+<div class="wrapper">
+    <h3>Season: </h3>
+    <select class="custom-select width300"
+            name="season"
+            (change)="onSeasonSelected()"
+            [(ngModel)]="selectedSeason">
+        <option *ngFor="let option of seasonOptions">{{option}}</option>    
+    </select>
+</div>
+
 <ul class="nav nav-tabs  bg-dark text-white">
     <li class="nav-item">
         <a *ngIf="allVisible" class="nav-link active" 
@@ -47,44 +57,57 @@
             </div>
         </div>
     </div>
+    <div *ngIf="raceLocations.length == 0">
+        <h5 class="margin20">No races available...</h5>
+    </div>
 </div>
 
 <!-- 
     ##### SLALOM #####
 -->
-<table *ngIf="slalomVisible" class="table table-striped table-dark table-hover">
-    <tbody>     
-        <tr *ngFor="let race of slalom">
-            <td>{{race.race.label}}</td>
-            <td>{{race.race.location}}</td>
-            <td>{{race.race.gender}}</td>
-            <td>
-                <a *ngIf="race.resultAvailable" class="float-right"
-                    routerLink="result/{{race.race.id}}">Result</a>
-                <div *ngIf="!race.resultAvailable" class="float-right">
-                    no result available
-                </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div *ngIf="slalomVisible">
+    <table class="table table-striped table-dark table-hover">
+        <tbody>     
+            <tr *ngFor="let race of slalom">
+                <td>{{race.race.label}}</td>
+                <td>{{race.race.location}}</td>
+                <td>{{race.race.gender}}</td>
+                <td>
+                    <a *ngIf="race.resultAvailable" class="float-right"
+                        routerLink="result/{{race.race.id}}">Result</a>
+                    <div *ngIf="!race.resultAvailable" class="float-right">
+                        no result available
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="slalom.length == 0">
+        <h5 class="margin20">No races available...</h5>
+    </div>
+</div>
 
 <!-- 
     ##### GIANT SLALOM #####
 -->
-<table *ngIf="giantSlalomVisible" class="table table-striped table-dark table-hover">
-    <tbody>     
-        <tr *ngFor="let race of giantSlalom">
-            <td>{{race.race.label}}</td>
-            <td>{{race.race.location}}</td>
-            <td>{{race.race.gender}}</td>
-            <td>
-                <a *ngIf="race.resultAvailable" class="float-right"
-                    routerLink="result/{{race.race.id}}">Result</a>
-                <div *ngIf="!race.resultAvailable" class="float-right">
-                    no result available
-                </div>    
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div *ngIf="giantSlalomVisible">
+    <table class="table table-striped table-dark table-hover">
+        <tbody>     
+            <tr *ngFor="let race of giantSlalom">
+                <td>{{race.race.label}}</td>
+                <td>{{race.race.location}}</td>
+                <td>{{race.race.gender}}</td>
+                <td>
+                    <a *ngIf="race.resultAvailable" class="float-right"
+                        routerLink="result/{{race.race.id}}">Result</a>
+                    <div *ngIf="!race.resultAvailable" class="float-right">
+                        no result available
+                    </div>    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="giantSlalom.length == 0">
+        <h5 class="margin20">No races available...</h5>
+    </div>
+</div>

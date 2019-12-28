@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Skier } from '../shared/skier';
 import { HuraceDataApiService } from '../shared/hurace-data-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'angularx-social-login';
 
 declare var $: any;
@@ -21,7 +21,8 @@ export class StartlistComponent implements OnInit {
 
     constructor(private hs: HuraceDataApiService,
                 private route: ActivatedRoute,
-                private authService: AuthService) { }
+                private authService: AuthService,
+                private router: Router) { }
     
     ngOnInit() {
         this.loadStartlists();
@@ -30,9 +31,7 @@ export class StartlistComponent implements OnInit {
             .subscribe(user => {
                 this.loggedIn = (user != null);
 
-                setTimeout(() => {
-                    $('.selectpicker').selectpicker('refresh');
-                }, 500);
+                this.refreshSelectPicker(100);
             } );
     }
 
@@ -43,12 +42,16 @@ export class StartlistComponent implements OnInit {
             this.hs.getStartlistDelta(params['id'])
                 .subscribe(res => {
                     this.startlistDelta = res;
-                    
-                    setTimeout(() => {
-                        $('.selectpicker').selectpicker('refresh');
-                    }, 500);
+                    this.refreshSelectPicker(100);
                 });
         });
+    }
+
+    refreshSelectPicker(delay: number) {
+        setTimeout(() => {
+            $('.selectpicker').val("");
+            $('.selectpicker').selectpicker('refresh');
+        }, delay);
     }
 
     proposeSkier() {
@@ -73,5 +76,9 @@ export class StartlistComponent implements OnInit {
             }
         });
         return id;
+    }
+
+    navigateBack() {
+        this.router.navigateByUrl('/home');
     }
 }
