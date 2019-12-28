@@ -7,7 +7,7 @@ import { Race } from '../shared/race';
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
-  styleUrls: ['./statistic.component.css']
+  styleUrls: []
 })
 export class StatisticComponent implements OnInit {
     

@@ -8,11 +8,6 @@ label {
   font-weight: bold;
 }
 
-.wrapper {
-  text-align: center;
-  margin: 10px;
-}
-
 .wrapper button {
   width: 300px;
   margin: 20px;

@@ -11,7 +11,7 @@ import { ResultApi } from '../shared/result-api';
 @Component({
   selector: 'app-live',
   templateUrl: './live.component.html',
-  styleUrls: ['./live.component.css']
+  styleUrls: []
 })
 export class LiveComponent implements OnInit {
 

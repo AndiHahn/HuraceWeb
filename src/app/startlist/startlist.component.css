@@ -2,8 +2,6 @@ img {
     width: 20%;
 }
 
-
-
 .centerContent {
     width: 350px;
     margin-left: auto;
@@ -14,12 +12,4 @@ td {
     vertical-align: middle;
     font-size: larger;
     padding: 2px;
-}
-
-.marginLeft10 {
-    margin-left: 10px;
-}
-
-.marginLeft25 {
-    margin-left: 25px;
 }

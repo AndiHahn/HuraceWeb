@@ -5,3 +5,39 @@
     text-align: center;
     margin: 20px;
 }
+
+.width300 {
+    width: 300px;
+}
+
+.margin10 {
+    margin: 10px;
+}
+
+.margin20 {
+    margin: 20px;
+}
+
+.marginLeft10 {
+    margin-left: 10px;
+}
+
+.marginLeft25 {
+    margin-left: 25px;
+}
+
+.marginLeft50 {
+    margin-left: 50px;
+}
+
+.marginRight50 {
+    margin-right: 50px;
+}
+
+.marginLeft200 {
+    margin-left: 200px;
+}
+
+.marginRight200 {
+    margin-right: 200px;
+}
