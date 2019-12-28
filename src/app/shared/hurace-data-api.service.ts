@@ -74,4 +74,9 @@ export class HuraceDataApiService {
         return this.http.get<Skier[]>(`${environment.server}/race/startlistdelta/${raceid}`)
             .pipe(catchError(this.errorHandler));
     } 
+
+    addSkierToStartlist(skier: Skier, raceId: number): Observable<any> {
+        return this.http.post<any>(`${environment.server}/race/startlist/${raceId}`, skier)
+            .pipe(catchError(this.errorHandler));
+    }
 }

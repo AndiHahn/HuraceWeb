@@ -7,10 +7,20 @@ img {
     margin: 20px;
 }
 
+.centerContent {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 td {
     vertical-align: middle;
     font-size: larger;
     padding: 2px;
+}
+
+.marginLeft10 {
+    margin-left: 10px;
 }
 
 .marginLeft25 {

@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { SkierEditErrorMessages } from './skier-edit-error-messages';
 import { Country } from '../shared/country';
 
+declare var $: any;
+
 @Component({
   selector: 'app-skier-edit',
   templateUrl: './skier-edit.component.html',
@@ -25,17 +27,38 @@ export class SkierEditComponent implements OnInit {
                 private hs: HuraceDataApiService) { }
 
     ngOnInit() {
-        this.hs.getAllCountries().subscribe(res => this.countryOptions = res);
+        this.hs.getAllCountries().subscribe(res => {
+            this.countryOptions = res;
+            //refresh selectpicker
+            setTimeout(() => {
+                console.log("refresh selectpicker countries loaded!");
+                console.log("skier.country: " + this.skier.country);
+                $('.selectpicker').selectpicker('refresh');
+            }, 500);
+        } );
         this.skierForm.statusChanges.subscribe(() => this.updateErrorMessages());
 
         this.route.params.subscribe(params => {
             if (params['id'] != 0) {
                 this.hs.getSkierById(params['id'])
-                    .subscribe(res => this.skier = res);
+                    .subscribe(res => {
+                        this.skier = res;
+                        //refresh selectpicker
+                        //console.log("refresh selectpicker skier laoded");
+                        //$('.selectpicker').selectpicker('refresh');
+                    } );
             } else {
                 this.skier.id = 0;
             }
         });
+    }
+
+    ngAfterViewInit() {
+        setTimeout(() => {
+            console.log("refresh selectpicker ngAfterViewInit!");
+            console.log("skier.country: " + this.skier.country);
+            $('.selectpicker').selectpicker('refresh');
+        }, 1000);
     }
 
     storeSkier() {

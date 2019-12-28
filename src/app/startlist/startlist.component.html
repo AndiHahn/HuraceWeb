@@ -3,21 +3,22 @@
         <h1>Propose Skier for Startlist</h1>
     </div>
 
-    <!--[(ngModel)]="selectedSkier" -->
-    <select class="selectpicker" 
-            id="test"
-            name="skier">
-        <option *ngFor="let startpos of startlistDelta">
-            {{startpos?.firstName}} {{startpos?.lastName}}
-        </option>
-    </select>
+    <div class="centerContent">
+        <select class="selectpicker"
+                data-live-search="true"
+                name="skiername"
+                [(ngModel)]="selectedSkier">
+            <option *ngFor="let skier of startlistDelta">
+                {{skier.firstName}} {{skier.lastName}}
+            </option>
+        </select>
 
-    <button type="button" 
-            class="btn btn-primary"
-            (click)="proposeSkier()">Propose</button>
+        <button type="button" 
+                class="btn btn-primary marginLeft10"
+                (click)="proposeSkier()">Propose</button>
+    </div>
+    
 </div>
-
-
 
 <div class="wrapper">
     <h1>Startlist</h1>
