@@ -83,10 +83,19 @@ export class LiveComponent implements OnInit {
     }
 
     refresh() {
-        this.hs.getCurrentSkier().subscribe(res => this.currentSkier = res);
-        this.hs.getLastSkier().subscribe(res => this.lastSkier = res);
-        this.hs.getNextSkier().subscribe(res => this.nextSkier = res);
-        this.getAllLastResults();
+        this.hs.getCurrentSkier().subscribe(res => {
+            this.currentSkier = res;
+            this.getAllLastResults();
+        });
+        this.hs.getLastSkier().subscribe(res => {
+            this.lastSkier = res;
+            this.getAllLastResults();
+        });
+        this.hs.getNextSkier().subscribe(res => {
+            this.nextSkier = res;
+            this.getAllLastResults();
+        });
+        
 
         this.hs.getLiveResults()
             .subscribe(res => {
@@ -159,6 +168,9 @@ export class LiveComponent implements OnInit {
                     });
                     this.calculatePodiumsNextSkier();
                 });
+        } else {
+            this.nextAllResults = [];
+            this.calculatePodiumsNextSkier();
         }
 
         if (this.currentSkier != null) {
@@ -172,6 +184,9 @@ export class LiveComponent implements OnInit {
                     });
                     this.calculatePodiumsCurrentSkier();
                 });
+        } else {
+            this.currentAllResults = [];
+            this.calculatePodiumsCurrentSkier();
         }
 
         if (this.lastSkier != null) {
@@ -185,6 +200,9 @@ export class LiveComponent implements OnInit {
                     });
                     this.calculatePodiumsLastSkier();
                 });
+        } else {
+            this.lastAllResults = [];
+            this.calculatePodiumsLastSkier();
         }
     }
 
