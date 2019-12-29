@@ -10,6 +10,7 @@
                 <tr>
                     <td><h5>NEXT STARTER:</h5></td>
                     <td><img *ngIf="nextSkier != null" 
+                            style="width: 40%"
                             [src]="nextSkier?.imageUrl"/></td>
                     <td>
                         <h5>{{nextSkier?.firstName}} {{nextSkier?.lastName}}</h5>
@@ -19,17 +20,18 @@
                 <tr>
                     <td><h5>CURRENT SKIER:</h5></td>
                     <td><img *ngIf="currentSkier != null" 
+                            style="width: 40%"
                             [src]="currentSkier?.imageUrl"/></td>
                     <td>
                         <h5>{{currentSkier?.firstName}} {{currentSkier?.lastName}}</h5>
                         <div *ngIf="currentIntermediate?.id > 1">
                             <h6 *ngIf="!timespanIsMinus(currentIntermediate?.time)"
                                 class="text-danger">
-                                {{currentIntermediate?.id}}: + {{currentIntermediate?.time}}
+                                {{currentIntermediate?.id}}: + {{currentIntermediate?.time | slice:3:-5}}
                             </h6>
                             <h6 *ngIf="timespanIsMinus(currentIntermediate?.time)"
                                 class="text-success">
-                                {{currentIntermediate?.id}}: {{currentIntermediate?.time}}
+                                {{currentIntermediate?.id}}: {{currentIntermediate?.time | slice:3:-5}}
                             </h6>
                         </div>
                         
@@ -39,20 +41,21 @@
                 <tr>
                     <td><h5>FINISHED:</h5></td>
                     <td><img *ngIf="lastSkier != null" 
+                            style="width: 40%"
                             [src]="lastSkier?.imageUrl"/></td>
                     <td>
                         <div *ngIf="resultLastSkier != null && resultLastSkier.ordinal > 0">
                             <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
                             <h6>Rank: {{resultLastSkier?.ordinal}}</h6>
-                            <h6>Time: {{resultLastSkier?.time}}</h6>
+                            <h6>Time: {{resultLastSkier?.time | slice:3:-5}}</h6>
                         
                             <h6 *ngIf="resultLastSkier?.ordinal == 1"
                                 class="text-success">
-                                {{resultLastSkier?.residue}}
+                                {{resultLastSkier?.residue | slice:3:-5}}
                             </h6>
                             <h6 *ngIf="resultLastSkier?.ordinal != 1"
                                 class="text-danger">
-                                + {{resultLastSkier?.residue}}
+                                + {{resultLastSkier?.residue | slice:3:-5}}
                             </h6>
                         </div>
                     </td>
@@ -67,83 +70,68 @@
                 <tr>
                     <td><h5>NEXT STARTER:</h5></td>
                     <td><img *ngIf="nextSkier != null" 
+                            style="width: 40%"
                             [src]="nextSkier?.imageUrl"/></td>
                     <td>
                         <h5>{{nextSkier?.firstName}} {{nextSkier?.lastName}}</h5>
                     </td>
                     <td *ngIf="isLoggedIn">
-                        Letzte Platzierungen: 
-                        <div class="d-flex flex-wrap align-content-stretch">
-                            <div *ngFor="let item of nextAllResults">{{item}}. , </div>
+                        <div class="app-podium-result"
+                             [allResults]="nextAllResults">
                         </div>
-                        <p class="text-success"
-                            style="margin: 0px;" 
-                            *ngFor="let podium of nextPodiumResult; let i = index">
-                            {{i + 1}}. Place: {{podium}}
-                        </p>
                     </td>
                 </tr>
 
                 <tr>
                     <td><h5>CURRENT SKIER:</h5></td>
                     <td><img *ngIf="currentSkier != null" 
+                            style="width: 40%"
                             [src]="currentSkier?.imageUrl"/></td>
                     <td>
                         <h5>{{currentSkier?.firstName}} {{currentSkier?.lastName}}</h5>
                         <div *ngIf="currentIntermediate?.id > 1">
                             <h6 *ngIf="!timespanIsMinus(currentIntermediate?.time)"
                                 class="text-danger">
-                                {{currentIntermediate?.id}}: + {{currentIntermediate?.time}}
+                                {{currentIntermediate?.id}}: + {{currentIntermediate?.time | slice:3:-5}}
                             </h6>
                             <h6 *ngIf="timespanIsMinus(currentIntermediate?.time)"
                                 class="text-success">
-                                {{currentIntermediate?.id}}: {{currentIntermediate?.time}}
+                                {{currentIntermediate?.id}}: {{currentIntermediate?.time | slice:3:-5}}
                             </h6>
                         </div>
                     </td>
                     <td *ngIf="isLoggedIn">
-                        Letzte Platzierungen: 
-                        <div class="d-flex flex-wrap align-content-stretch">
-                            <div *ngFor="let item of currentAllResults">{{item}}. , </div>
+                        <div class="app-podium-result"
+                             [allResults]="currentAllResults">
                         </div>
-                        <p class="text-success"
-                            style="margin: 0px;" 
-                            *ngFor="let podium of currentPodiumResult; let i = index">
-                            {{i + 1}}. Place: {{podium}}
-                        </p>
                     </td>
                 </tr>
 
                 <tr>
                     <td><h5>FINISHED:</h5></td>
                     <td><img *ngIf="lastSkier != null" 
+                            style="width: 40%"
                             [src]="lastSkier?.imageUrl"/></td>
                     <td>
                         <div *ngIf="resultLastSkier != null && resultLastSkier.ordinal > 0">
                             <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
                             <h6>Rank: {{resultLastSkier?.ordinal}}</h6>
-                            <h6>Time: {{resultLastSkier?.time}}</h6>
+                            <h6>Time: {{resultLastSkier?.time | slice:3:-5}}</h6>
                         
                             <h6 *ngIf="resultLastSkier?.ordinal == 1"
                                 class="text-success">
-                                {{resultLastSkier?.residue}}
+                                {{resultLastSkier?.residue | slice:3:-5}}
                             </h6>
                             <h6 *ngIf="resultLastSkier?.ordinal != 1"
                                 class="text-danger">
-                                + {{resultLastSkier?.residue}}
+                                + {{resultLastSkier?.residue | slice:3:-5}}
                             </h6>
                         </div>
                     </td>
                     <td *ngIf="isLoggedIn">
-                        Letzte Platzierungen: 
-                        <div class="d-flex flex-wrap align-content-stretch">
-                            <div *ngFor="let item of lastAllResults">{{item}}. , </div>
+                        <div class="app-podium-result"
+                             [allResults]="lastAllResults">
                         </div>
-                        <p class="text-success"
-                            style="margin: 0px;" 
-                            *ngFor="let podium of lastPodiumResult; let i = index">
-                            {{i + 1}}. Place: {{podium}}
-                        </p>
                     </td>
                 </tr>
             </tbody>
@@ -164,7 +152,7 @@
                     </td>
                     <td class="text-center"><img [src]="result.countryImgUrl"/></td>
                     <td>{{result.name}}</td>
-                    <td>{{result.time}}</td>
+                    <td>{{result.time | slice:3:-5}}</td>
                 </tr>
             </tbody>
         </table>

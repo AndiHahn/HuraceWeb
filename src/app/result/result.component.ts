@@ -29,12 +29,12 @@ export class ResultComponent implements OnInit {
 
                         res.map((result) => 
                         {
-                            let timeString = "";
+                            let timeString: string = "";
                             if (result.status == "OK") {
                                 if (result.ordinal == 1) {
-                                    timeString = result.time;
+                                    timeString = result.time.slice(3, -5);
                                 } else {
-                                    timeString = "+ " + result.residue;
+                                    timeString = "+ " + result.residue.slice(3, -5);
                                 }
                             } else {
                                 timeString = result.status;
@@ -54,9 +54,9 @@ export class ResultComponent implements OnInit {
                             let timeString = "";
                             if (result.status == "OK") {
                                 if (result.ordinal == 1) {
-                                    timeString = result.time;
+                                    timeString = result.time.slice(3, -5);;
                                 } else {
-                                    timeString = "+ " + result.residue;
+                                    timeString = "+ " + result.residue.slice(3, -5);
                                 }
                             } else {
                                 timeString = result.status;

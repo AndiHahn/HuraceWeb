@@ -29,7 +29,7 @@
             <td><h1 class="marginLeft25">{{i + 1}}</h1></td>
             <td class="text-center"><img [src]="skier.imageUrl"/></td>
             <td>{{skier.firstName}} {{skier.lastName}}</td>
-            <td>{{skier.birthDate}}</td>
+            <td>{{skier.birthDate | slice:0:10}} </td>
             <td>{{skier.country}}</td>
         </tr>
     </tbody>

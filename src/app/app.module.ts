@@ -19,6 +19,7 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { ResultComponent } from './result/result.component';
 import { LiveComponent } from './live/live.component';
 import { StartlistComponent } from './startlist/startlist.component';
+import { PodiumResultComponent } from './podium-result/podium-result.component';
 
 let config = new AuthServiceConfig([
   {
@@ -45,6 +46,7 @@ export function provideConfig() {
     ResultComponent,
     LiveComponent,
     StartlistComponent,
+    PodiumResultComponent,
   ],
   imports: [
     BrowserModule,

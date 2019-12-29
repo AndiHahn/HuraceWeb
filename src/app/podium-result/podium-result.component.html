@@ -1,0 +1,9 @@
+Letzte Platzierungen: 
+<div class="d-flex flex-wrap align-content-stretch">
+    <div *ngFor="let item of allResults">{{item}}. , </div>
+</div>
+<p class="text-success"
+    style="margin: 0px;" 
+    *ngFor="let podium of podiumResult; let i = index">
+    {{i + 1}}. Place: {{podium}}
+</p>
