@@ -4,7 +4,7 @@
 </div>        
 
 <div *ngIf="isLive">
-    <div class="marginLeft200 marginRight200">
+    <div *ngIf="!isLoggedIn" class="marginLeft200 marginRight200">   
         <table class="table table-striped table-dark">
             <tbody>  
                 <tr>
@@ -55,6 +55,95 @@
                                 + {{resultLastSkier?.residue}}
                             </h6>
                         </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="isLoggedIn" class="marginLeft100 marginRight100">   
+        <table class="table table-striped table-dark">
+            <tbody>  
+                <tr>
+                    <td><h5>NEXT STARTER:</h5></td>
+                    <td><img *ngIf="nextSkier != null" 
+                            [src]="nextSkier?.imageUrl"/></td>
+                    <td>
+                        <h5>{{nextSkier?.firstName}} {{nextSkier?.lastName}}</h5>
+                    </td>
+                    <td *ngIf="isLoggedIn">
+                        Letzte Platzierungen: 
+                        <div class="d-flex flex-wrap align-content-stretch">
+                            <div *ngFor="let item of nextAllResults">{{item}}. , </div>
+                        </div>
+                        <p class="text-success"
+                            style="margin: 0px;" 
+                            *ngFor="let podium of nextPodiumResult; let i = index">
+                            {{i + 1}}. Place: {{podium}}
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h5>CURRENT SKIER:</h5></td>
+                    <td><img *ngIf="currentSkier != null" 
+                            [src]="currentSkier?.imageUrl"/></td>
+                    <td>
+                        <h5>{{currentSkier?.firstName}} {{currentSkier?.lastName}}</h5>
+                        <div *ngIf="currentIntermediate?.id > 1">
+                            <h6 *ngIf="!timespanIsMinus(currentIntermediate?.time)"
+                                class="text-danger">
+                                {{currentIntermediate?.id}}: + {{currentIntermediate?.time}}
+                            </h6>
+                            <h6 *ngIf="timespanIsMinus(currentIntermediate?.time)"
+                                class="text-success">
+                                {{currentIntermediate?.id}}: {{currentIntermediate?.time}}
+                            </h6>
+                        </div>
+                    </td>
+                    <td *ngIf="isLoggedIn">
+                        Letzte Platzierungen: 
+                        <div class="d-flex flex-wrap align-content-stretch">
+                            <div *ngFor="let item of currentAllResults">{{item}}. , </div>
+                        </div>
+                        <p class="text-success"
+                            style="margin: 0px;" 
+                            *ngFor="let podium of currentPodiumResult; let i = index">
+                            {{i + 1}}. Place: {{podium}}
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h5>FINISHED:</h5></td>
+                    <td><img *ngIf="lastSkier != null" 
+                            [src]="lastSkier?.imageUrl"/></td>
+                    <td>
+                        <div *ngIf="resultLastSkier != null && resultLastSkier.ordinal > 0">
+                            <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
+                            <h6>Rank: {{resultLastSkier?.ordinal}}</h6>
+                            <h6>Time: {{resultLastSkier?.time}}</h6>
+                        
+                            <h6 *ngIf="resultLastSkier?.ordinal == 1"
+                                class="text-success">
+                                {{resultLastSkier?.residue}}
+                            </h6>
+                            <h6 *ngIf="resultLastSkier?.ordinal != 1"
+                                class="text-danger">
+                                + {{resultLastSkier?.residue}}
+                            </h6>
+                        </div>
+                    </td>
+                    <td *ngIf="isLoggedIn">
+                        Letzte Platzierungen: 
+                        <div class="d-flex flex-wrap align-content-stretch">
+                            <div *ngFor="let item of lastAllResults">{{item}}. , </div>
+                        </div>
+                        <p class="text-success"
+                            style="margin: 0px;" 
+                            *ngFor="let podium of lastPodiumResult; let i = index">
+                            {{i + 1}}. Place: {{podium}}
+                        </p>
                     </td>
                 </tr>
             </tbody>

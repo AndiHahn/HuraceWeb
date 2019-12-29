@@ -7,6 +7,8 @@ import { Subscription, interval } from 'rxjs';
 import { HuraceLiveApiService } from '../shared/hurace-live-api.service';
 import { Intermediate } from '../shared/intermediate';
 import { ResultApi } from '../shared/result-api';
+import { HuraceDataApiService } from '../shared/hurace-data-api.service';
+import { AuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-live',
@@ -16,10 +18,19 @@ import { ResultApi } from '../shared/result-api';
 export class LiveComponent implements OnInit {
 
     isLive: boolean = false;
+    isLoggedIn: boolean = false;
 
     currentSkier: Skier;
+    currentAllResults: number[];
+    currentPodiumResult: number[];
+
     lastSkier: Skier;
+    lastAllResults: number[];
+    lastPodiumResult: number[];
+
     nextSkier: Skier;
+    nextAllResults: number[];
+    nextPodiumResult: number[];    
     
     results: Result[] = [];
     furherStartlist: StartlistEntry[] = []; 
@@ -32,7 +43,9 @@ export class LiveComponent implements OnInit {
 
     cyclicSubscription: Subscription;
     
-    constructor(private hs: HuraceLiveApiService) { }
+    constructor(private hs: HuraceLiveApiService,
+                private hds: HuraceDataApiService,
+                private auth: AuthService) { }
     
     ngOnInit() {
         this.hs.isLive.subscribe(res => {
@@ -40,6 +53,8 @@ export class LiveComponent implements OnInit {
 
             this.startCyclicSubscription();
         });
+
+        this.auth.authState.subscribe(user => this.isLoggedIn = user != null);
     }
 
     ngOnDestroy() {
@@ -71,6 +86,7 @@ export class LiveComponent implements OnInit {
         this.hs.getCurrentSkier().subscribe(res => this.currentSkier = res);
         this.hs.getLastSkier().subscribe(res => this.lastSkier = res);
         this.hs.getNextSkier().subscribe(res => this.nextSkier = res);
+        this.getAllLastResults();
 
         this.hs.getLiveResults()
             .subscribe(res => {
@@ -129,5 +145,85 @@ export class LiveComponent implements OnInit {
 
     timespanIsMinus(time: string): boolean {
         return time.charAt(0) == "-";
+    }
+
+    getAllLastResults() {
+        if (this.nextSkier != null) {
+            this.hds.getAllResultsForSkier(this.nextSkier.id)
+                .subscribe(res => {
+                    this.nextAllResults = [];
+                    res.map(result => {
+                        if (result.ordinal > 0) {
+                            this.nextAllResults.push(result.ordinal);
+                        }
+                    });
+                    this.calculatePodiumsNextSkier();
+                });
+        }
+
+        if (this.currentSkier != null) {
+            this.hds.getAllResultsForSkier(this.currentSkier.id)
+                .subscribe(res => {
+                    this.currentAllResults = [];
+                    res.map(result => {
+                        if (result.ordinal > 0) {
+                            this.currentAllResults.push(result.ordinal);
+                        }
+                    });
+                    this.calculatePodiumsCurrentSkier();
+                });
+        }
+
+        if (this.lastSkier != null) {
+            this.hds.getAllResultsForSkier(this.lastSkier.id)
+                .subscribe(res => {
+                    this.lastAllResults = [];
+                    res.map(result => {
+                        if (result.ordinal > 0) {
+                            this.lastAllResults.push(result.ordinal);
+                        }
+                    });
+                    this.calculatePodiumsLastSkier();
+                });
+        }
+    }
+
+    calculatePodiumsNextSkier() {
+        this.nextPodiumResult = [0, 0, 0];
+        this.nextAllResults.forEach(res => {
+            if (res == 1) {
+                this.nextPodiumResult[0]++;
+            } else if(res == 2) {
+                this.nextPodiumResult[1]++;
+            } else if(res == 3) {
+                this.nextPodiumResult[2]++;
+            }
+        });
+    }
+
+    calculatePodiumsCurrentSkier() {
+        this.currentPodiumResult = [0, 0, 0];
+        this.currentAllResults.forEach(res => {
+            if (res == 1) {
+                this.currentPodiumResult[0]++;
+            } else if(res == 2) {
+                this.currentPodiumResult[1]++;
+            } else if(res == 3) {
+                this.currentPodiumResult[2]++;
+            }
+        });
+    }
+
+    calculatePodiumsLastSkier() {
+        this.lastPodiumResult = [0, 0, 0];
+        this.lastAllResults.forEach(res => {
+            if (res == 1) {
+                this.lastPodiumResult[0]++;
+            } else if(res == 2) {
+                this.lastPodiumResult[1]++;
+            } else if(res == 3) {
+                this.lastPodiumResult[2]++;
+            }
+        });
     }
 }

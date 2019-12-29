@@ -70,6 +70,11 @@ export class HuraceDataApiService {
             .pipe(catchError(this.errorHandler));
     }
 
+    getAllResultsForSkier(skierid: number): Observable<ResultApi[]> {
+        return this.http.get<ResultApi[]>(`${environment.server}/skier/result/${skierid}`)
+            .pipe(catchError(this.errorHandler));
+    }
+
     getStartlist(raceid: number): Observable<Skier[]> {
         return this.http.get<Skier[]>(`${environment.server}/race/startlist/${raceid}`)
             .pipe(catchError(this.errorHandler));
