@@ -1,6 +1,12 @@
 # HuraceWeb
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
+Hurace Backend is required
+
+- REST call's
+- Facebook Login
+- Bootstrap
+- Live Race Service
 
 ## Development server
 
