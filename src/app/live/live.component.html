@@ -1,15 +1,15 @@
 <div class="wrapper">
     <h3 *ngIf="isLive">{{race?.label}}</h3>
     <h3 *ngIf="!isLive">No live Race...</h3>
-</div>        
+</div>
 
 <div *ngIf="isLive">
-    <div *ngIf="!isLoggedIn" class="marginLeft200 marginRight200">   
+    <div *ngIf="!isLoggedIn" class="marginLeft200 marginRight200">
         <table class="table table-striped table-dark">
-            <tbody>  
+            <tbody>
                 <tr>
                     <td><h5>NEXT STARTER:</h5></td>
-                    <td><img *ngIf="nextSkier != null" 
+                    <td><img *ngIf="nextSkier != null"
                             style="width: 40%"
                             [src]="nextSkier?.imageUrl"/></td>
                     <td>
@@ -19,7 +19,7 @@
 
                 <tr>
                     <td><h5>CURRENT SKIER:</h5></td>
-                    <td><img *ngIf="currentSkier != null" 
+                    <td><img *ngIf="currentSkier != null"
                             style="width: 40%"
                             [src]="currentSkier?.imageUrl"/></td>
                     <td>
@@ -34,13 +34,13 @@
                                 {{currentIntermediate?.id}}: {{currentIntermediate?.time | slice:3:-5}}
                             </h6>
                         </div>
-                        
+
                     </td>
                 </tr>
 
                 <tr>
                     <td><h5>FINISHED:</h5></td>
-                    <td><img *ngIf="lastSkier != null" 
+                    <td><img *ngIf="lastSkier != null"
                             style="width: 40%"
                             [src]="lastSkier?.imageUrl"/></td>
                     <td>
@@ -48,7 +48,7 @@
                             <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
                             <h6>Rank: {{resultLastSkier?.ordinal}}</h6>
                             <h6>Time: {{resultLastSkier?.time | slice:3:-5}}</h6>
-                        
+
                             <h6 *ngIf="resultLastSkier?.ordinal == 1"
                                 class="text-success">
                                 {{resultLastSkier?.residue | slice:3:-5}}
@@ -64,12 +64,12 @@
         </table>
     </div>
 
-    <div *ngIf="isLoggedIn" class="marginLeft100 marginRight100">   
+    <div *ngIf="isLoggedIn" class="marginLeft100 marginRight100">
         <table class="table table-striped table-dark">
-            <tbody>  
+            <tbody>
                 <tr>
                     <td><h5>NEXT STARTER:</h5></td>
-                    <td><img *ngIf="nextSkier != null" 
+                    <td><img *ngIf="nextSkier != null"
                             style="width: 40%"
                             [src]="nextSkier?.imageUrl"/></td>
                     <td>
@@ -84,7 +84,7 @@
 
                 <tr>
                     <td><h5>CURRENT SKIER:</h5></td>
-                    <td><img *ngIf="currentSkier != null" 
+                    <td><img *ngIf="currentSkier != null"
                             style="width: 40%"
                             [src]="currentSkier?.imageUrl"/></td>
                     <td>
@@ -109,7 +109,7 @@
 
                 <tr>
                     <td><h5>FINISHED:</h5></td>
-                    <td><img *ngIf="lastSkier != null" 
+                    <td><img *ngIf="lastSkier != null"
                             style="width: 40%"
                             [src]="lastSkier?.imageUrl"/></td>
                     <td>
@@ -117,7 +117,7 @@
                             <h5>{{lastSkier?.firstName}} {{lastSkier?.lastName}}</h5>
                             <h6>Rank: {{resultLastSkier?.ordinal}}</h6>
                             <h6>Time: {{resultLastSkier?.time | slice:3:-5}}</h6>
-                        
+
                             <h6 *ngIf="resultLastSkier?.ordinal == 1"
                                 class="text-success">
                                 {{resultLastSkier?.residue | slice:3:-5}}
@@ -143,7 +143,7 @@
             <thead>
                 <h5 class="margin10">Ranking</h5>
             </thead>
-            <tbody>     
+            <tbody>
                 <tr *ngFor="let result of results">
                     <td>
                         <div *ngIf="result.ordinal > 0" class="text-center">
@@ -152,7 +152,8 @@
                     </td>
                     <td class="text-center"><img [src]="result.countryImgUrl"/></td>
                     <td>{{result.name}}</td>
-                    <td>{{result.time | slice:3:-5}}</td>
+                    <!--<td>{{result.time | slice:3:-5}}</td>-->
+                    <td>{{result.time}}</td>
                 </tr>
             </tbody>
         </table>
@@ -163,7 +164,7 @@
             <thead>
                 <h5 class="margin10">Further Startlist</h5>
             </thead>
-            <tbody>     
+            <tbody>
                 <tr *ngFor="let startpos of furherStartlist">
                         <td *ngIf="startpos.ordinal > 0">{{startpos.ordinal}}</td>
                         <td *ngIf="startpos.ordinal > 0">
